@@ -1,14 +1,19 @@
-get_puzzle:
-   path: /puzzle
-   controller: App\Application\Controller\PuzzleController
+puzzles:
+   path: /puzzles
+   controller: App\Application\Controller\PuzzleController::index
    methods: GET
 
-test:
-   path: /test
-   controller: App\Controller\TestController::index
+random_puzzle:
+   path: /puzzles/random
+   controller: App\Application\Controller\PuzzleController::get
    methods: GET
 
-home:
-   path: /
-   controller: App\Controller\TestController::index
+save_puzzle:
+   path: /puzzles/{encoding}
+   controller: App\Application\Controller\PuzzleController::store
+   methods: POST
+
+solve_puzzle:
+   path: /puzzles/{encoding}/solution
+   controller: App\Application\Controller\SolutionController::index
    methods: GET
