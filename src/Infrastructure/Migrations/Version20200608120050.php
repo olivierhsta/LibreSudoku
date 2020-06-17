@@ -22,20 +22,21 @@ final class Version20200608120050 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('
-            CREATE TABLE sudoku (
-                sudoku_uuid VARCHAR(36) NOT NULL,
+            CREATE TABLE puzzle (
+                puzzle_uuid VARCHAR(36) NOT NULL,
                 grid VARCHAR(81) NOT NULL,
                 solvable BOOLEAN NULL,
+                difficulty VARCHAR(15) NULL,
                 created_at DATETIME,
                 PRIMARY KEY(sudoku_uuid)
             ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB'
         );
 
         $this->addSql('
-            CREATE TRIGGER before_insert_sudoku
-                BEFORE INSERT ON sudoku
+            CREATE TRIGGER before_insert_puzzle
+                BEFORE INSERT ON puzzle
                 FOR EACH ROW SET
-                    new.sudoku_uuid = uuid(),
+                    new.puzzle_uuid = uuid(),
                     new.created_at = now()'
         );
     }
@@ -44,7 +45,7 @@ final class Version20200608120050 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE sudoku');
-        $this->addSql('DROP TRIGGER before_insert_sudoku');
+        $this->addSql('DROP TABLE puzzle');
+        $this->addSql('DROP TRIGGER before_insert_puzzle');
     }
 }
