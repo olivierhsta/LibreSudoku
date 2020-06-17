@@ -7,18 +7,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PuzzleController extends AbstractController
 {
-    public function list()
+    public function index(string $encoding)
     {
         return $this->json([
-            'message' => 'List all puzzles',
+            'message' => 'Get one puzzle',
             'path' => 'src/Application/Controller/PuzzleController.php',
         ]);
     }
 
-    public function get(string $encoding)
+    public function list()
     {
         return $this->json([
-            'message' => 'Get one puzzle',
+            'message' => 'List all puzzles',
             'path' => 'src/Application/Controller/PuzzleController.php',
         ]);
     }

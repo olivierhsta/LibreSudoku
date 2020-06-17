@@ -15,7 +15,7 @@ save_puzzle:
 
 get_puzzle:
    path: /puzzles/{encoding}
-   controller: App\Application\Controller\PuzzleController::get
+   controller: App\Application\Controller\PuzzleController::index
    methods: POST
 
 solve_puzzle:
