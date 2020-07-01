@@ -8,7 +8,7 @@ random_puzzle:
    controller: App\Application\Controller\PuzzleController::random
    methods: GET
 
-save_puzzle:
+store_puzzle:
    path: /puzzles/{encoding}
    controller: App\Application\Controller\PuzzleController::store
    methods: POST

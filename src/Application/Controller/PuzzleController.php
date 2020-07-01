@@ -3,10 +3,16 @@
 namespace App\Application\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Domain\Repository\PuzzleRepository;
+use App\Application\Request\SavePuzzleRequest;
 
 class PuzzleController extends AbstractController
 {
+    public function __construct(PuzzleRepository $puzzleRepository) {
+        $this->puzzleRepository = $puzzleRepository;
+    }
+
     public function index(string $encoding)
     {
         return $this->json([
@@ -31,10 +37,11 @@ class PuzzleController extends AbstractController
         ]);
     }
 
-    public function store(string $encoding) {
+    public function store(SavePuzzleRequest $savePuzzleRequest) {
         return $this->json([
             'message' => 'Save a puzzle',
             'path' => 'src/Application/Controller/PuzzleController.php',
+            'request' => $savePuzzleRequest,
         ]);
     }
 }
