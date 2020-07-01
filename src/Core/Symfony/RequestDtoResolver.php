@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use App\Application\Request\RequestDto;
+use App\Http\Request\RequestDto;
 
 class RequestDtoResolver implements ArgumentValueResolverInterface
 {

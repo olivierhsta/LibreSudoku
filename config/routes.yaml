@@ -1,24 +1,24 @@
 puzzles:
    path: /puzzles
-   controller: App\Application\Controller\PuzzleController::list
+   controller: App\Http\Controller\PuzzleController::list
    methods: GET
 
 random_puzzle:
    path: /puzzles/random
-   controller: App\Application\Controller\PuzzleController::random
+   controller: App\Http\Controller\PuzzleController::random
    methods: GET
 
 store_puzzle:
    path: /puzzles/{encoding}
-   controller: App\Application\Controller\PuzzleController::store
+   controller: App\Http\Controller\PuzzleController::store
    methods: POST
 
 get_puzzle:
    path: /puzzles/{encoding}
-   controller: App\Application\Controller\PuzzleController::index
+   controller: App\Http\Controller\PuzzleController::index
    methods: POST
 
 solve_puzzle:
    path: /puzzles/{encoding}/solution
-   controller: App\Application\Controller\SolutionController::index
+   controller: App\Http\Controller\SolutionController::index
    methods: GET

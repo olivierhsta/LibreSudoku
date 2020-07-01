@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Controller;
+namespace App\Http\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +11,7 @@ class SolutionController extends AbstractController
     {
         return $this->json([
             'message' => 'Solving ' . $encoding,
-            'path' => 'src/Application/Controller/SolutionController.php',
+            'path' => 'src/Http/Controller/SolutionController.php',
         ]);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\Request;
+namespace App\Http\Request;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Application\Request\RequestDto;
+use App\Http\Request\RequestDto;
 
 /**
  * API contract for the POST /puzzles/{encoding} endpoint

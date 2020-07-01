@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Application\Controller;
+namespace App\Http\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Domain\Repository\PuzzleRepository;
-use App\Application\Request\SavePuzzleRequest;
+use App\Http\Request\SavePuzzleRequest;
 
 class PuzzleController extends AbstractController
 {
@@ -17,7 +17,7 @@ class PuzzleController extends AbstractController
     {
         return $this->json([
             'message' => 'Get one puzzle',
-            'path' => 'src/Application/Controller/PuzzleController.php',
+            'path' => 'src/Http/Controller/PuzzleController.php',
         ]);
     }
 
@@ -25,7 +25,7 @@ class PuzzleController extends AbstractController
     {
         return $this->json([
             'message' => 'List all puzzles',
-            'path' => 'src/Application/Controller/PuzzleController.php',
+            'path' => 'src/Http/Controller/PuzzleController.php',
         ]);
     }
 
@@ -33,14 +33,14 @@ class PuzzleController extends AbstractController
     {
         return $this->json([
             'message' => 'Get a random puzzle',
-            'path' => 'src/Application/Controller/PuzzleController.php',
+            'path' => 'src/Http/Controller/PuzzleController.php',
         ]);
     }
 
     public function store(SavePuzzleRequest $savePuzzleRequest) {
         return $this->json([
             'message' => 'Save a puzzle',
-            'path' => 'src/Application/Controller/PuzzleController.php',
+            'path' => 'src/Http/Controller/PuzzleController.php',
             'request' => $savePuzzleRequest,
         ]);
     }
