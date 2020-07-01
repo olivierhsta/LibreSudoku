@@ -2,21 +2,22 @@
 
 namespace App\Domain\Entity;
 
+use App\Domain\Value\Grid;
+
 /**
  * Sudoku Puzzle class
  */
 class Puzzle
 {
-    private $encoding;
+    private $grid;
 
-    public function __construct($encoding)
+    public function __construct(Grid $grid)
     {
-        $this->encoding = $encoding;
+        $this->grid = $grid;
     }
 
-    public function getEncoding()
+    public function getGrid(): Grid
     {
-        return $this->encoding;
+        return $this->grid;
     }
-
 }

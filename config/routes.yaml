@@ -2,16 +2,22 @@ puzzles:
    path: /puzzles
    controller: App\Http\Controller\PuzzleController::list
    methods: GET
+   defaults:
+        _format: json
 
 random_puzzle:
    path: /puzzles/random
    controller: App\Http\Controller\PuzzleController::random
    methods: GET
+   defaults:
+        _format: json
 
 store_puzzle:
    path: /puzzles/{encoding}
    controller: App\Http\Controller\PuzzleController::store
    methods: POST
+   defaults:
+        _format: json
 
 get_puzzle:
    path: /puzzles/{encoding}

@@ -26,7 +26,7 @@ final class Version20200608120050 extends AbstractMigration
                 puzzle_uuid VARCHAR(36) NOT NULL,
                 grid VARCHAR(81) NOT NULL,
                 solvable BOOLEAN NULL,
-                difficulty VARCHAR(15) NULL,
+                difficulty INTEGER NULL,
                 created_at DATETIME,
                 PRIMARY KEY(puzzle_uuid)
             ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB'

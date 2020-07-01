@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Domain\Repository\PuzzleRepository;
 use App\Http\Request\SavePuzzleRequest;
+use App\Domain\Command\Puzzle\SavePuzzleCommand;
+use App\Domain\Value\Grid;
+use App\Domain\Entity\Puzzle;
 
 class PuzzleController extends AbstractController
 {
@@ -38,10 +41,12 @@ class PuzzleController extends AbstractController
     }
 
     public function store(SavePuzzleRequest $savePuzzleRequest) {
-        return $this->json([
-            'message' => 'Save a puzzle',
-            'path' => 'src/Http/Controller/PuzzleController.php',
-            'request' => $savePuzzleRequest,
-        ]);
+        $command = new SavePuzzleCommand(
+            new Puzzle(
+                new Grid($savePuzzleRequest->encoding)
+            ),
+            $this->puzzleRepository
+        );
+        return $command->handle();
     }
 }
