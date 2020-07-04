@@ -13,7 +13,7 @@ random_puzzle:
         _format: json
 
 store_puzzle:
-   path: /puzzles/{encoding}
+   path: /puzzles
    controller: App\Http\Controller\PuzzleController::store
    methods: POST
    defaults:

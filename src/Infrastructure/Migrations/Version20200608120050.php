@@ -36,7 +36,6 @@ final class Version20200608120050 extends AbstractMigration
             CREATE TRIGGER before_insert_puzzle
                 BEFORE INSERT ON puzzle
                 FOR EACH ROW SET
-                    new.puzzle_uuid = uuid(),
                     new.created_at = now()'
         );
     }

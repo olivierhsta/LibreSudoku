@@ -35,12 +35,10 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
         $doctrinePuzzle->setSolvable(true);
         $doctrinePuzzle->setDifficulty(3);
 
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
         $entityManager->persist($doctrinePuzzle);
 
-        // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new product with id '.$doctrinePuzzle->getPuzzleUuid());
+        return new Response('Saved new puzzle with id '.$doctrinePuzzle->getPuzzleUuid());
     }
 }

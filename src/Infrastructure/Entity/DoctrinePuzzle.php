@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Infrastructure\Repository\DoctrinePuzzleRepository;
 use App\Domain\Entity\Puzzle;
 use App\Domain\Value\Grid;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity(repositoryClass=DoctrinePuzzleRepository::class)
@@ -14,26 +16,42 @@ use App\Domain\Value\Grid;
 class DoctrinePuzzle implements Puzzle
 {
     /**
+     * @var UuidInterface
+     *
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
      */
     private $puzzle_uuid;
 
     /**
+     * @var Grid
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $grid;
 
     /**
+     * @var bool
+     *
      * @ORM\Column(type="boolean")
      */
     private $solvable;
 
     /**
+     * @var int
+     *
      * @ORM\Column(type="integer")
      */
     private $difficulty;
+
+    /**
+     * @var DateTimeImmutable
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
 
     public function getPuzzleUuid(): string
     {

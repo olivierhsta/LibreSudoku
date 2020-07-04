@@ -7,12 +7,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Http\Request\RequestDto;
 
 /**
- * API contract for the POST /puzzles/{encoding} endpoint
+ * API contract for the POST /puzzles endpoint
  */
 class SavePuzzleRequest implements RequestDto
 {
     /**
      * @Assert\NotBlank()
+     * @Assert\Type("array")
+     * @Assert\Count(81)
      */
     public $encoding;
 
