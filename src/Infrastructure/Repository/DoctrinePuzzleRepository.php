@@ -27,7 +27,7 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
 
     }
 
-    public function store(Puzzle $puzzle) {
+    public function store(Puzzle $puzzle): Puzzle {
         $entityManager = $this->getEntityManager();
 
         $doctrinePuzzle = new DoctrinePuzzle();
@@ -39,6 +39,6 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
 
         $entityManager->flush();
 
-        return new Response('Saved new puzzle with id '.$doctrinePuzzle->getPuzzleUuid());
+        return $doctrinePuzzle;
     }
 }
