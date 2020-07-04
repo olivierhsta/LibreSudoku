@@ -4,7 +4,7 @@ namespace App\Infrastructure\Repository;
 
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Entity\Puzzle;
-use App\Infrastructure\DoctrineEntity\DoctrinePuzzle;
+use App\Infrastructure\Entity\DoctrinePuzzle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +31,7 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
         $entityManager = $this->getEntityManager();
 
         $doctrinePuzzle = new DoctrinePuzzle();
-        $doctrinePuzzle->setGrid($puzzle->getGrid()->getEncoding());
+        $doctrinePuzzle->setGrid($puzzle->getGrid());
         $doctrinePuzzle->setSolvable(true);
         $doctrinePuzzle->setDifficulty(3);
 

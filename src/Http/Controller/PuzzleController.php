@@ -5,6 +5,7 @@ namespace App\Http\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Domain\Repository\PuzzleRepository;
+use App\Domain\Factory\PuzzleFactory;
 use App\Http\Request\SavePuzzleRequest;
 use App\Domain\Command\Puzzle\SavePuzzleCommand;
 use App\Domain\Value\Grid;
@@ -12,7 +13,11 @@ use App\Domain\Entity\Puzzle;
 
 class PuzzleController extends AbstractController
 {
-    public function __construct(PuzzleRepository $puzzleRepository) {
+    private $puzzleFactory;
+    private $puzzleRepository;
+
+    public function __construct(PuzzleFactory $puzzleFactory, PuzzleRepository $puzzleRepository) {
+        $this->puzzleFactory = $puzzleFactory;
         $this->puzzleRepository = $puzzleRepository;
     }
 
@@ -42,9 +47,7 @@ class PuzzleController extends AbstractController
 
     public function store(SavePuzzleRequest $savePuzzleRequest) {
         $command = new SavePuzzleCommand(
-            new Puzzle(
-                new Grid($savePuzzleRequest->encoding)
-            ),
+            $this->puzzleFactory->createFromGrid(new Grid($savePuzzleRequest->encoding)),
             $this->puzzleRepository
         );
         return $command->handle();

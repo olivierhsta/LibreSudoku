@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Infrastructure\DoctrineEntity;
+namespace App\Infrastructure\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Infrastructure\Repository\DoctrinePuzzleRepository;
+use App\Domain\Entity\Puzzle;
+use App\Domain\Value\Grid;
 
 /**
  * @ORM\Entity(repositoryClass=DoctrinePuzzleRepository::class)
  * @ORM\Table(name="puzzle")
  */
-class DoctrinePuzzle
+class DoctrinePuzzle implements Puzzle
 {
     /**
      * @ORM\Id
@@ -33,29 +35,29 @@ class DoctrinePuzzle
      */
     private $difficulty;
 
-    public function getPuzzleUuid()
+    public function getPuzzleUuid(): string
     {
         return $this->puzzle_uuid;
     }
 
-    public function getGrid()
+    public function getGrid(): Grid
     {
-        return $this->grid;
+        return new Grid(str_split($this->grid, 1));
     }
 
-    public function getSolvable()
+    public function getSolvable(): bool
     {
         return $this->solvable;
     }
 
-    public function getDifficulty()
+    public function getDifficulty(): int
     {
         return $this->difficulty;
     }
 
-    public function setGrid(string $grid)
+    public function setGrid(Grid $grid)
     {
-        return $this->grid = $grid;
+        return $this->grid = $grid->getEncoding();
     }
 
     public function setSolvable(bool $solvable)

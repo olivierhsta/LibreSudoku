@@ -4,20 +4,13 @@ namespace App\Domain\Entity;
 
 use App\Domain\Value\Grid;
 
-/**
- * Sudoku Puzzle class
- */
-class Puzzle
+interface Puzzle
 {
-    private $grid;
+    public function getPuzzleUuid(): string;
 
-    public function __construct(Grid $grid)
-    {
-        $this->grid = $grid;
-    }
+    public function getGrid(): Grid;
 
-    public function getGrid(): Grid
-    {
-        return $this->grid;
-    }
+    public function getSolvable(): bool;
+
+    public function getDifficulty(): int;
 }
