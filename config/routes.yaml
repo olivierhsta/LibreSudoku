@@ -23,8 +23,12 @@ get_puzzle:
    path: /puzzles/{encoding}
    controller: App\Http\Controller\PuzzleController::index
    methods: POST
+   defaults:
+        _format: json
 
 solve_puzzle:
    path: /puzzles/{encoding}/solution
    controller: App\Http\Controller\SolutionController::index
    methods: GET
+   defaults:
+        _format: json

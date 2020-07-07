@@ -7,5 +7,5 @@ use App\Domain\Value\Grid;
 
 interface PuzzleFactory
 {
-    public function createFromGrid(Grid $grid): Puzzle;
+    public function create(Grid $grid): Puzzle;
 }

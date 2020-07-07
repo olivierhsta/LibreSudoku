@@ -47,7 +47,7 @@ class PuzzleController extends AbstractController
 
     public function store(SavePuzzleRequest $savePuzzleRequest) {
         $command = new SavePuzzleCommand(
-            $this->puzzleFactory->createFromGrid(new Grid($savePuzzleRequest->encoding)),
+            $this->puzzleFactory->create(new Grid($savePuzzleRequest->encoding)),
             $this->puzzleRepository
         );
         return $command->handle();

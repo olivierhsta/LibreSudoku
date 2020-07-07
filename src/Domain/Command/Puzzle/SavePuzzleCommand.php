@@ -25,9 +25,9 @@ class SavePuzzleCommand implements Command
 
     public function handle(): JsonResponse
     {
-        $solvedPuzzle = $this->puzzleRepository->store(
+        $puzzle = $this->puzzleRepository->store(
             $this->puzzle
         );
-        return new SavePuzzleResponse($solvedPuzzle);
+        return new SavePuzzleResponse($puzzle);
     }
 }

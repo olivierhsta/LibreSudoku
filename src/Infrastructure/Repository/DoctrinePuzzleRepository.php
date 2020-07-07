@@ -30,15 +30,10 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
     public function store(Puzzle $puzzle): Puzzle {
         $entityManager = $this->getEntityManager();
 
-        $doctrinePuzzle = new DoctrinePuzzle();
-        $doctrinePuzzle->setGrid($puzzle->getGrid());
-        $doctrinePuzzle->setSolvable(true);
-        $doctrinePuzzle->setDifficulty(3);
-
-        $entityManager->persist($doctrinePuzzle);
+        $entityManager->persist($puzzle);
 
         $entityManager->flush();
 
-        return $doctrinePuzzle;
+        return $puzzle;
     }
 }

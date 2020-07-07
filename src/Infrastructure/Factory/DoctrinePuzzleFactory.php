@@ -10,10 +10,10 @@ use App\Domain\Entity\Puzzle;
 class DoctrinePuzzleFactory implements PuzzleFactory
 {
 
-    public function createFromGrid(Grid $grid): Puzzle
+    public function create(Grid $grid): Puzzle
     {
         $puzzle = new DoctrinePuzzle();
-
+        
         $puzzle->setGrid($grid);
         $puzzle->setSolvable(true);
         $puzzle->setDifficulty(1);

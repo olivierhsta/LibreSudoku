@@ -18,15 +18,20 @@ class Grid
         if (count($encoding) !== 81) {
             throw new InvalidPuzzleEncodingException();
         }
-        $this->encoding = '';
+        $this->encoding = [];
         foreach ($encoding as $cellContent) {
             $cell = new Cell($cellContent);
-            $cells[] = $cell;
-            $this->encoding .= $cell->containsValue() ? $cell->getValue() : '0';
+            $this->cells[] = $cell;
+            $this->encoding[] = $cell->containsValue() ? $cell->getValue() : $cell->getPencilMarks();
         }
     }
 
-    public function getEncoding()
+    public function getCells(): array
+    {
+        return $this->cells;
+    }
+
+    public function getEncoding(): array
     {
         return $this->encoding;
     }
