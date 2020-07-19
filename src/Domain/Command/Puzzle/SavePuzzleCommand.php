@@ -28,8 +28,8 @@ class SavePuzzleCommand implements Command
 
     function __construct(
         Puzzle $puzzle,
-        PuzzleRepository $puzzleRepository)
-    {
+        PuzzleRepository $puzzleRepository
+    ) {
         $this->puzzle = $puzzle;
         $this->puzzleRepository = $puzzleRepository;
     }

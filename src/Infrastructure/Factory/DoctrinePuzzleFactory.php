@@ -36,7 +36,7 @@ class DoctrinePuzzleFactory implements PuzzleFactory
 
         $puzzle->setGrid($grid);
         $puzzle->setSolvable($this->solvabilityService->isGridSolvable($grid));
-        $puzzle->setDifficulty($this->difficultyService->findGridDifficulty($grid)->getValue());
+        $puzzle->setDifficulty($this->difficultyService->findGridDifficulty($grid));
 
         return $puzzle;
     }

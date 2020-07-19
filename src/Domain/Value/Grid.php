@@ -13,6 +13,9 @@ class Grid
     private $encoding;
     private $cells;
 
+    /**
+     * @thorws InvalidPuzzleEncodingException
+     */
     function __construct(array $encoding)
     {
         if (count($encoding) !== 81) {

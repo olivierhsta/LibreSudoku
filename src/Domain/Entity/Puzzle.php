@@ -3,6 +3,7 @@
 namespace App\Domain\Entity;
 
 use App\Domain\Value\Grid;
+use App\Domain\Value\Difficulty;
 
 interface Puzzle
 {
@@ -12,5 +13,5 @@ interface Puzzle
 
     public function getSolvable(): bool;
 
-    public function getDifficulty(): int;
+    public function getDifficulty(): Difficulty;
 }

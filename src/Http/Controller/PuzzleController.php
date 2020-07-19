@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Factory\PuzzleFactory;
 use App\Http\Request\SavePuzzleRequest;
+use App\Http\Factory\GridFactory;
 use App\Domain\Command\Puzzle\SavePuzzleCommand;
 use App\Domain\Value\Grid;
 use App\Domain\Entity\Puzzle;
@@ -19,15 +20,22 @@ class PuzzleController extends AbstractController
     private $puzzleFactory;
 
     /**
+     * @var GridFactory
+     */
+    private $gridFactory;
+
+    /**
      * @var PuzzleRepository
      */
     private $puzzleRepository;
 
     public function __construct(
         PuzzleFactory $puzzleFactory,
+        GridFactory $gridFactory,
         PuzzleRepository $puzzleRepository
     ) {
         $this->puzzleFactory = $puzzleFactory;
+        $this->gridFactory = $gridFactory;
         $this->puzzleRepository = $puzzleRepository;
     }
 
@@ -57,7 +65,7 @@ class PuzzleController extends AbstractController
 
     public function store(SavePuzzleRequest $savePuzzleRequest) {
         $command = new SavePuzzleCommand(
-            $this->puzzleFactory->create(new Grid($savePuzzleRequest->encoding)),
+            $this->puzzleFactory->create($this->gridFactory->create($savePuzzleRequest->encoding)),
             $this->puzzleRepository
         );
         return $command->handle();

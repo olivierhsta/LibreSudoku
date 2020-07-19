@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Infrastructure\Repository\DoctrinePuzzleRepository;
 use App\Domain\Entity\Puzzle;
 use App\Domain\Value\Grid;
+use App\Domain\Value\Difficulty;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 
@@ -26,7 +27,7 @@ class DoctrinePuzzle implements Puzzle
     private $puzzle_uuid;
 
     /**
-     * @var Grid
+     * @var string
      *
      * @ORM\Column(type="string", length=255)
      */
@@ -68,9 +69,9 @@ class DoctrinePuzzle implements Puzzle
         return $this->solvable;
     }
 
-    public function getDifficulty(): int
+    public function getDifficulty(): Difficulty
     {
-        return $this->difficulty;
+        return new Difficulty($this->difficulty);
     }
 
     public function setGrid(Grid $grid)
@@ -87,8 +88,8 @@ class DoctrinePuzzle implements Puzzle
         return $this->solvable = $solvable;
     }
 
-    public function setDifficulty(int $difficulty)
+    public function setDifficulty(Difficulty $difficulty)
     {
-        return $this->difficulty = $difficulty;
+        return $this->difficulty = $difficulty->getValue();
     }
 }

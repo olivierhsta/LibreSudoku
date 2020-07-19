@@ -65,7 +65,7 @@ class Cell
     private function isValidPencilMarksArray($content)
     {
         if (is_array($content)) {
-            if (count($content) > self::MAX_PENCIL_MARKS) {
+            if (count($content) > self::MAX_PENCIL_MARKS || count(array_unique($content)) !== count($content)) {
                 throw new InvalidPuzzleEncodingException();
             }
             return true;
