@@ -2,13 +2,13 @@
 
 namespace App\Domain\Service;
 
-use App\Domain\Entity\Puzzle;
+use App\Domain\Value\Grid;
 
 class SolvabilityService
 {
 
-    public function isPuzzleSolvable(Puzzle $puzzle)
+    public function isGridSolvable(Grid $grid): bool
     {
-        // code...
+        return true;
     }
 }

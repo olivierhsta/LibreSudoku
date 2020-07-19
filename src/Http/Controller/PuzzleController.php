@@ -13,10 +13,20 @@ use App\Domain\Entity\Puzzle;
 
 class PuzzleController extends AbstractController
 {
+    /**
+     * @var PuzzleFactory
+     */
     private $puzzleFactory;
+
+    /**
+     * @var PuzzleRepository
+     */
     private $puzzleRepository;
 
-    public function __construct(PuzzleFactory $puzzleFactory, PuzzleRepository $puzzleRepository) {
+    public function __construct(
+        PuzzleFactory $puzzleFactory,
+        PuzzleRepository $puzzleRepository
+    ) {
         $this->puzzleFactory = $puzzleFactory;
         $this->puzzleRepository = $puzzleRepository;
     }

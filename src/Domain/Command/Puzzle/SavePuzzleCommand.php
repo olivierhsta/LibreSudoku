@@ -28,9 +28,7 @@ class SavePuzzleCommand implements Command
 
     function __construct(
         Puzzle $puzzle,
-        PuzzleRepository $puzzleRepository,
-        SolvabilityService $solvabilityService,
-        DifficultyService $difficultyService)
+        PuzzleRepository $puzzleRepository)
     {
         $this->puzzle = $puzzle;
         $this->puzzleRepository = $puzzleRepository;
@@ -40,7 +38,6 @@ class SavePuzzleCommand implements Command
     {
         $puzzle = $this->puzzleRepository->store(
             $this->puzzle
-
         );
         return new SavePuzzleResponse($puzzle);
     }

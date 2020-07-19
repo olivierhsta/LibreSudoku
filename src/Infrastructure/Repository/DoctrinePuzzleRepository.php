@@ -19,11 +19,11 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
         parent::__construct($registry, DoctrinePuzzle::class);
     }
 
-    public function get(string $encoding) {
+    public function get(string $encoding): Puzzle {
         dd('getting');
     }
 
-    public function random() {
+    public function random(): Puzzle {
 
     }
 
