@@ -1,11 +1,14 @@
-###> symfony/framework-bundle ###
+# symfony/framework-bundle
 /.env
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
 /vendor/
 
-###> symfony/phpunit-bridge ###
+# symfony/phpunit-bridge
 .phpunit
 .phpunit.result.cache
 /phpunit.xml
+
+# others
+*.pdf

@@ -9,7 +9,7 @@ use App\Domain\Entity\Puzzle;
  */
 interface PuzzleRepository
 {
-    public function get(string $encoding);
-    public function random();
-    public function store(Puzzle $puzzle);
+    public function get(string $encoding) : Puzzle;
+    public function random() : Puzzle;
+    public function store(Puzzle $puzzle) : Puzzle;
 }

@@ -9,6 +9,7 @@ class Cell
     const MAX_PENCIL_MARKS = 9;
     const MAX_CELL_VALUE = 9;
     const MIN_CELL_VALUE = 1;
+    const EMPTY_CELL_VALUE = 0;
 
     protected $pencilMarks;
     protected $value;
@@ -50,7 +51,7 @@ class Cell
     private function isValidValue($content)
     {
         if (!is_array($content)) {
-            if (!is_int((int) $content) || $content < self::MIN_CELL_VALUE || $content > self::MAX_CELL_VALUE) {
+            if ((!is_int((int) $content) || $content < self::MIN_CELL_VALUE || $content > self::MAX_CELL_VALUE) && $content !== self::EMPTY_CELL_VALUE ) {
                 throw new InvalidPuzzleEncodingException();
             }
             return true;
