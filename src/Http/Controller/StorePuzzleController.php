@@ -11,8 +11,9 @@ use App\Http\Factory\GridFactory;
 use App\Domain\Command\Puzzle\SavePuzzleCommand;
 use App\Domain\Value\Grid;
 use App\Domain\Entity\Puzzle;
+use App\Http\Response\SavePuzzleResponse;
 
-class PuzzleController extends AbstractController
+class StorePuzzleController extends AbstractController
 {
     /**
      * @var PuzzleFactory
@@ -39,35 +40,12 @@ class PuzzleController extends AbstractController
         $this->puzzleRepository = $puzzleRepository;
     }
 
-    public function index(string $encoding)
-    {
-        return $this->json([
-            'message' => 'Get one puzzle',
-            'path' => 'src/Http/Controller/PuzzleController.php',
-        ]);
-    }
-
-    public function list()
-    {
-        return $this->json([
-            'message' => 'List all puzzles',
-            'path' => 'src/Http/Controller/PuzzleController.php',
-        ]);
-    }
-
-    public function random(string $encoding)
-    {
-        return $this->json([
-            'message' => 'Get a random puzzle',
-            'path' => 'src/Http/Controller/PuzzleController.php',
-        ]);
-    }
-
-    public function store(SavePuzzleRequest $savePuzzleRequest) {
+    public function __invoke(SavePuzzleRequest $savePuzzleRequest) {
         $command = new SavePuzzleCommand(
             $this->puzzleFactory->create($this->gridFactory->create($savePuzzleRequest->encoding)),
             $this->puzzleRepository
         );
-        return $command->handle();
+        $puzzle = $command->handle();
+        return new SavePuzzleResponse($puzzle);
     }
 }

@@ -14,7 +14,7 @@ class SavePuzzleResponse extends JsonResponse
         $data = [
             "id" => $puzzle->getPuzzleUuid(),
             "encoding" => $puzzle->getGrid()->getEncoding(),
-            "difficulty" => $puzzle->getDifficulty(),
+            "difficulty" => $puzzle->getDifficulty()->getValue(),
             "solvable" => $puzzle->getSolvable()
         ];
         parent::__construct($data, self::STATUS);

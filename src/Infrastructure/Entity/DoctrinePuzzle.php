@@ -74,22 +74,21 @@ class DoctrinePuzzle implements Puzzle
         return new Difficulty($this->difficulty);
     }
 
-    public function setGrid(Grid $grid)
+    public function setGrid(Grid $grid): void
     {
         $this->grid = '';
         foreach ($grid->getCells() as $cell) {
             $this->grid .= $cell->containsValue() ? $cell->getValue() : '0';
         }
-        return $this->grid;
     }
 
-    public function setSolvable(bool $solvable)
+    public function setSolvable(bool $solvable): void
     {
-        return $this->solvable = $solvable;
+        $this->solvable = $solvable;
     }
 
-    public function setDifficulty(Difficulty $difficulty)
+    public function setDifficulty(Difficulty $difficulty): void
     {
-        return $this->difficulty = $difficulty->getValue();
+        $this->difficulty = $difficulty->getValue();
     }
 }

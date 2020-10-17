@@ -14,4 +14,10 @@ interface Puzzle
     public function getSolvable(): bool;
 
     public function getDifficulty(): Difficulty;
+
+    public function setGrid(Grid $grid): void;
+
+    public function setSolvable(bool $solvable  ): void;
+
+    public function setDifficulty(Difficulty $difficulty): void;
 }

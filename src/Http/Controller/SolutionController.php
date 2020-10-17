@@ -9,9 +9,10 @@ class SolutionController extends AbstractController
 {
     public function index(string $encoding)
     {
-        return $this->json([
-            'message' => 'Solving ' . $encoding,
-            'path' => 'src/Http/Controller/SolutionController.php',
-        ]);
+        $command = new SolvePuzzleCommand(
+            $this->puzzleFactory->create($this->gridFactory->create($encoding)),
+            $this->puzzleRepository
+        );
+        return $command->handle();
     }
 }

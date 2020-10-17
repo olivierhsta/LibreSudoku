@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Domain\Command\Puzzle;
+namespace App\Domain\Command\Solution;
 
 use App\Domain\Command\Command;
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Entity\Puzzle;
+use App\Http\Response\SavePuzzleResponse;
 use App\Domain\Service\SolvabilityService;
 use App\Domain\Service\DifficultyService;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Command class to handle saving of a puzzle
+ * Command class to handle solving of a puzzle
  */
-class SavePuzzleCommand implements Command
+class SolvePuzzleCommand implements Command
 {
-
     /**
      * @var Puzzle
      */
@@ -32,11 +33,11 @@ class SavePuzzleCommand implements Command
         $this->puzzleRepository = $puzzleRepository;
     }
 
-    public function handle(): Puzzle
+    public function handle(): JsonResponse
     {
         $puzzle = $this->puzzleRepository->store(
             $this->puzzle
         );
-        return $puzzle;
+        return new SavePuzzleResponse($puzzle);
     }
 }
