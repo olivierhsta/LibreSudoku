@@ -1,30 +1,30 @@
-puzzles:
-   path: /puzzles
-   controller: App\Http\Controller\PuzzleController::list
-   methods: GET
-   defaults:
-        _format: json
-
-random_puzzle:
-   path: /puzzles/random
-   controller: App\Http\Controller\PuzzleController::random
-   methods: GET
-   defaults:
-        _format: json
-
+# puzzles:
+#    path: /puzzles
+#    controller: App\Http\Controller\PuzzleController::list
+#    methods: GET
+#    defaults:
+#         _format: json
+#
+# random_puzzle:
+#    path: /puzzles/random
+#    controller: App\Http\Controller\PuzzleController::random
+#    methods: GET
+#    defaults:
+#         _format: json
+#
 store_puzzle:
    path: /puzzles
-   controller: App\Http\Controller\PuzzleController::store
+   controller: App\Http\Controller\StorePuzzleController
    methods: POST
    defaults:
         _format: json
 
-get_puzzle:
-   path: /puzzles/{encoding}
-   controller: App\Http\Controller\PuzzleController::index
-   methods: POST
-   defaults:
-        _format: json
+# get_puzzle:
+#    path: /puzzles/{encoding}
+#    controller: App\Http\Controller\PuzzleController::index
+#    methods: POST
+#    defaults:
+#         _format: json
 
 solve_puzzle:
    path: /puzzles/{encoding}/solution

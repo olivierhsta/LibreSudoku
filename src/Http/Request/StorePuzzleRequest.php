@@ -9,7 +9,7 @@ use App\Http\Request\RequestDto;
 /**
  * API contract for the POST /puzzles endpoint
  */
-class SavePuzzleRequest implements RequestDto
+class StorePuzzleRequest implements RequestDto
 {
     /**
      * @Assert\NotBlank()

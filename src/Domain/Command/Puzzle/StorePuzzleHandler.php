@@ -11,13 +11,8 @@ use App\Domain\Service\DifficultyService;
 /**
  * Command class to handle saving of a puzzle
  */
-class SavePuzzleCommand implements Command
+class StorePuzzleHandler
 {
-
-    /**
-     * @var Puzzle
-     */
-    private $puzzle;
 
     /**
      * @var PuzzleRepository
@@ -25,17 +20,15 @@ class SavePuzzleCommand implements Command
     private $puzzleRepository;
 
     function __construct(
-        Puzzle $puzzle,
         PuzzleRepository $puzzleRepository
     ) {
-        $this->puzzle = $puzzle;
         $this->puzzleRepository = $puzzleRepository;
     }
 
-    public function handle(): Puzzle
+    public function handle(StorePuzzleCommand $command): Puzzle
     {
         $puzzle = $this->puzzleRepository->store(
-            $this->puzzle
+            $command->puzzle
         );
         return $puzzle;
     }

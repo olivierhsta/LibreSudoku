@@ -6,12 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Factory\PuzzleFactory;
-use App\Http\Request\SavePuzzleRequest;
+use App\Http\Request\StorePuzzleRequest;
 use App\Http\Factory\GridFactory;
-use App\Domain\Command\Puzzle\SavePuzzleCommand;
+use App\Domain\Command\Puzzle\StorePuzzleCommand;
+use App\Domain\Command\Puzzle\StorePuzzleHandler;
 use App\Domain\Value\Grid;
 use App\Domain\Entity\Puzzle;
-use App\Http\Response\SavePuzzleResponse;
+use App\Http\Response\StorePuzzleResponse;
 
 class StorePuzzleController extends AbstractController
 {
@@ -30,22 +31,26 @@ class StorePuzzleController extends AbstractController
      */
     private $puzzleRepository;
 
+    /**
+     * @var StorePuzzleHandler
+     */
+    private $handler;
+
     public function __construct(
+        StorePuzzleHandler $handler,
         PuzzleFactory $puzzleFactory,
-        GridFactory $gridFactory,
-        PuzzleRepository $puzzleRepository
+        GridFactory $gridFactory
     ) {
         $this->puzzleFactory = $puzzleFactory;
         $this->gridFactory = $gridFactory;
-        $this->puzzleRepository = $puzzleRepository;
+        $this->handler = $handler;
     }
 
-    public function __invoke(SavePuzzleRequest $savePuzzleRequest) {
-        $command = new SavePuzzleCommand(
-            $this->puzzleFactory->create($this->gridFactory->create($savePuzzleRequest->encoding)),
-            $this->puzzleRepository
+    public function __invoke(StorePuzzleRequest $storePuzzleRequest) {
+        $command = new StorePuzzleCommand(
+            $this->puzzleFactory->create($this->gridFactory->create($storePuzzleRequest->encoding))
         );
-        $puzzle = $command->handle();
-        return new SavePuzzleResponse($puzzle);
+        $puzzle = $this->handler->handle($command);
+        return new StorePuzzleResponse($puzzle);
     }
 }
