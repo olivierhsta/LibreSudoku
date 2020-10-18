@@ -28,6 +28,7 @@ final class Version20200608120050 extends AbstractMigration
                 solvable BOOLEAN NULL,
                 difficulty INTEGER NULL,
                 created_at DATETIME,
+                updated_at DATETIME,
                 PRIMARY KEY(puzzle_uuid)
             ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB'
         );
@@ -38,6 +39,13 @@ final class Version20200608120050 extends AbstractMigration
                 FOR EACH ROW SET
                     new.created_at = now()'
         );
+
+        $this->addSql('
+            CREATE TRIGGER before_update_puzzle
+                BEFORE UPDATE ON puzzle
+                FOR EACH ROW SET
+                    new.updated_at = now()'
+        );
     }
 
     public function down(Schema $schema) : void
@@ -46,5 +54,6 @@ final class Version20200608120050 extends AbstractMigration
 
         $this->addSql('DROP TABLE puzzle');
         $this->addSql('DROP TRIGGER before_insert_puzzle');
+        $this->addSql('DROP TRIGGER before_update_puzzle');
     }
 }

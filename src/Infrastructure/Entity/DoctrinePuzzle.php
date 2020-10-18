@@ -54,6 +54,13 @@ class DoctrinePuzzle implements Puzzle
      */
     private $createdAt;
 
+    /**
+     * @var DateTimeImmutable
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
     public function getPuzzleUuid(): string
     {
         return $this->puzzle_uuid;
