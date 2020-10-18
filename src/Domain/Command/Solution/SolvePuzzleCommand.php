@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Command class to handle solving of a puzzle
  */
-class SolvePuzzleCommand implements Command
+class SolvePuzzleCommand
 {
     /**
      * @var Puzzle

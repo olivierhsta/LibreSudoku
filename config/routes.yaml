@@ -19,12 +19,12 @@ store_puzzle:
    defaults:
         _format: json
 
-# get_puzzle:
-#    path: /puzzles/{encoding}
-#    controller: App\Http\Controller\PuzzleController::index
-#    methods: POST
-#    defaults:
-#         _format: json
+get_puzzle:
+   path: /puzzles/{uuid}
+   controller: App\Http\Controller\FetchPuzzleController
+   methods: GET
+   defaults:
+        _format: json
 
 solve_puzzle:
    path: /puzzles/{encoding}/solution

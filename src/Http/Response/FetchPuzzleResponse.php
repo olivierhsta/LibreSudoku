@@ -5,9 +5,9 @@ namespace App\Http\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Domain\Entity\Puzzle;
 
-class StorePuzzleResponse extends JsonResponse
+class FetchPuzzleResponse extends JsonResponse
 {
-    const STATUS = 201;
+    const STATUS = 200;
 
     public function __construct(Puzzle $puzzle)
     {

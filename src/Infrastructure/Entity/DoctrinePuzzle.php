@@ -61,7 +61,7 @@ class DoctrinePuzzle implements Puzzle
      */
     private $updatedAt;
 
-    public function getPuzzleUuid(): string
+    public function getPuzzleUuid(): UuidInterface
     {
         return $this->puzzle_uuid;
     }

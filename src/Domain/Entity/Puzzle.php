@@ -4,10 +4,11 @@ namespace App\Domain\Entity;
 
 use App\Domain\Value\Grid;
 use App\Domain\Value\Difficulty;
+use Ramsey\Uuid\UuidInterface;
 
 interface Puzzle
 {
-    public function getPuzzleUuid(): string;
+    public function getPuzzleUuid(): UuidInterface;
 
     public function getGrid(): Grid;
 

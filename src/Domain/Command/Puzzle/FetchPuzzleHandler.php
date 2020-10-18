@@ -2,17 +2,14 @@
 
 namespace App\Domain\Command\Puzzle;
 
-use App\Domain\Command\Command;
+use App\Domain\Exception\CouldNotFetchPuzzleException;
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Entity\Puzzle;
-use App\Domain\Service\SolvabilityService;
-use App\Domain\Service\DifficultyService;
-use App\Domain\Exception\CouldNotStorePuzzleException;
 
 /**
  * Handler class to handle saving of a puzzle
  */
-class StorePuzzleHandler
+class FetchPuzzleHandler
 {
     /**
      * @var PuzzleRepository
@@ -25,19 +22,15 @@ class StorePuzzleHandler
         $this->puzzleRepository = $puzzleRepository;
     }
 
-    /**
-     * @throws CouldNotStorePuzzleException
-     */
-    public function handle(StorePuzzleCommand $command): Puzzle
+    public function handle(FetchPuzzleCommand $command): Puzzle
     {
         try {
-            $puzzle = $this->puzzleRepository->store(
-                $command->puzzle
+            $puzzle = $this->puzzleRepository->fetch(
+                $command->puzzleUuid
             );
         } catch (\Exception $exception) {
-            throw new CouldNotStorePuzzleException($exception->getCode(), $exception);
+            throw new CouldNotFetchPuzzleException($command->puzzleUuid, $exception->getCode(), $exception);
         }
-        
         return $puzzle;
     }
 }

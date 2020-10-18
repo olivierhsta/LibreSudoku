@@ -9,7 +9,7 @@ use App\Domain\Service\SolvabilityService;
 use App\Domain\Service\DifficultyService;
 
 /**
- * Command class to handle saving of a puzzle
+ * Command class to define saving of a puzzle
  */
 class StorePuzzleCommand
 {
