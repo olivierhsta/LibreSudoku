@@ -1,9 +1,9 @@
-# puzzles:
-#    path: /puzzles
-#    controller: App\Http\Controller\PuzzleController::list
-#    methods: GET
-#    defaults:
-#         _format: json
+puzzles:
+   path: /puzzles
+   controller: App\Http\Controller\ListPuzzlesController
+   methods: GET
+   defaults:
+        _format: json
 #
 # random_puzzle:
 #    path: /puzzles/random

@@ -21,6 +21,6 @@ class StorePuzzleRequest implements RequestDto
     public function __construct(Request $request)
     {
         $data = json_decode($request->getContent(), true);
-        $this->encoding = $data['encoding'] ?? '';
+        $this->encoding = $data['encoding'];
     }
 }

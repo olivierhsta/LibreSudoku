@@ -20,8 +20,15 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
         parent::__construct($registry, DoctrinePuzzle::class);
     }
 
-    public function fetch(UuidInterface $puzzleUuid): Puzzle {
+    public function fetchOne(UuidInterface $puzzleUuid): Puzzle {
         return $this->findOneBy(['puzzle_uuid' => $puzzleUuid]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fetchAll(?array $criteria): array {
+        return $this->findBy($criteria);
     }
 
     public function random(): Puzzle {

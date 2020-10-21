@@ -9,7 +9,6 @@ use Ramsey\Uuid\UuidInterface;
  */
 class FetchPuzzleCommand
 {
-
     /**
      * @var UuidInterface
      */

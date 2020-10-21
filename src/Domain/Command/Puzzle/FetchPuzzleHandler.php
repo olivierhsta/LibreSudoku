@@ -25,7 +25,7 @@ class FetchPuzzleHandler
     public function handle(FetchPuzzleCommand $command): Puzzle
     {
         try {
-            $puzzle = $this->puzzleRepository->fetch(
+            $puzzle = $this->puzzleRepository->fetchOne(
                 $command->puzzleUuid
             );
         } catch (\Exception $exception) {

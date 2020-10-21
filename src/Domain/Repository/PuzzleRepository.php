@@ -10,7 +10,12 @@ use Ramsey\Uuid\UuidInterface;
  */
 interface PuzzleRepository
 {
-    public function fetch(UuidInterface $puzzleUuid) : Puzzle;
+    public function fetchOne(UuidInterface $puzzleUuid) : Puzzle;
+
+    /**
+     * @return Puzzle[]
+     */
+    public function fetchAll(?array $criteria) : array;
 
     public function random() : Puzzle;
 
