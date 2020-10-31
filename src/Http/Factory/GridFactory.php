@@ -30,13 +30,13 @@ class GridFactory
     {
         $encoding = [];
         for ($i=0; $i < 81; $i++) {
-            $pencilMarks = [];
+            $candidates = [];
             for ($i = 0; $i < 9; $i++) {
                 if ($this->faker->boolean()) {
-                    $pencilMarks[] = $faker->unique()->randomDigit;
+                    $candidates[] = $faker->unique()->randomDigit;
                 }
             }
-            $encoding[] = $this->faker->boolean() ? $this->faker->randomDigit : $pencilMarks;
+            $encoding[] = $this->faker->boolean() ? $this->faker->randomDigit : $candidates;
         }
         return $this->create($encoding);
     }

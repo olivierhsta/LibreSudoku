@@ -25,8 +25,21 @@ class Grid
         foreach ($encoding as $cellContent) {
             $cell = new Cell($cellContent);
             $this->cells[] = $cell;
-            $this->encoding[] = $cell->containsValue() ? $cell->getValue() : $cell->getPencilMarks();
+            $this->encoding[] = $cell->containsValue() ? $cell->getValue() : $cell->getCandidates();
         }
+    }
+
+    /**
+     * Return the pure encoding of the grid.  A pure encoding is defined as the array
+     * of the numbers in the grid, excluding candidates and empty cells.
+     *
+     * @return int[]
+     */
+    public function getPureEncoding(): array
+    {
+        return array_filter($this->encoding, function($cellEncoding) {
+            return is_array($cellEncoding) ? null : (int) $cellEncoding === 0 ? null : $cellEncoding;
+        });
     }
 
     public function getCells(): array

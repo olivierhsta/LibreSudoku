@@ -8,6 +8,7 @@ class SolvabilityService
 {
     public function isGridSolvable(Grid $grid): bool
     {
-        return true;
+        // no sudoku with less than 17 clues can be solved
+        return count($grid->getPureEncoding()) >= 17;
     }
 }
