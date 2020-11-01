@@ -14,7 +14,7 @@ class Grid
     private $cells;
 
     /**
-     * @thorws InvalidPuzzleEncodingException
+     * @throws InvalidPuzzleEncodingException
      */
     function __construct(array $encoding)
     {
@@ -50,5 +50,14 @@ class Grid
     public function getEncoding(): array
     {
         return $this->encoding;
+    }
+
+    public function __toString(): string
+    {
+        $stringGrid = '';
+        foreach ($this->getCells() as $cell) {
+            $stringGrid .= $cell->containsValue() ? $cell->getValue() : '0';
+        }
+        return $stringGrid;
     }
 }

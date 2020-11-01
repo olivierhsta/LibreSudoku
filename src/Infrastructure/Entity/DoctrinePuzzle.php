@@ -83,10 +83,7 @@ class DoctrinePuzzle implements Puzzle
 
     public function setGrid(Grid $grid): void
     {
-        $this->grid = '';
-        foreach ($grid->getCells() as $cell) {
-            $this->grid .= $cell->containsValue() ? $cell->getValue() : '0';
-        }
+        $this->grid = (string)$grid;
     }
 
     public function setSolvable(bool $solvable): void

@@ -5,6 +5,9 @@ namespace App\EventListener;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use DomainException;
+use Throwable;
+use App\Http\HttpExceptionMapper;
 
 class ExceptionListener
 {
@@ -13,13 +16,15 @@ class ExceptionListener
         $exception = $event->getThrowable();
         $request   = $event->getRequest();
 
-        $response = $this->createApiResponse($exception);
-        $event->setResponse($response);
+        if ($exception instanceof DomainException) {
+            $response = $this->createApiResponse($exception);
+            $event->setResponse($response);
+        }
     }
 
     private function createApiResponse(Throwable $exception): JsonResponse
     {
-        $statusCode = $exception instanceof HttpExceptionInterface ? $exception->getStatusCode() : JsonResponse::HTTP_INTERNAL_SERVER_ERROR;
+        $statusCode = HttpExceptionMapper::fromClassName(get_class($exception));
         $file = $exception->getTrace()[0] ? $exception->getTrace()[0]["class"] ?? null : null;
 
         return new JsonResponse(

@@ -13,6 +13,7 @@ use App\Domain\Command\Puzzle\StorePuzzleHandler;
 use App\Domain\Value\Grid;
 use App\Domain\Entity\Puzzle;
 use App\Http\Response\StorePuzzleResponse;
+use App\Domain\Exception\PuzzleAlreadyExistsException;
 
 class StorePuzzleController extends AbstractController
 {
