@@ -4,6 +4,7 @@ namespace App\Domain\Command\Puzzle;
 
 use App\Domain\Exception\CouldNotListPuzzlesException;
 use App\Domain\Repository\PuzzleRepository;
+use Exception;
 
 use App\Domain\Entity\Puzzle;
 
@@ -38,7 +39,7 @@ class ListPuzzlesHandler
 
         try {
             $puzzles = $this->puzzleRepository->fetchAll($criteria);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             throw new CouldNotListPuzzlesException($criteria, $exception->getCode(), $exception);
         }
 

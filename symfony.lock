@@ -394,6 +394,9 @@
     "symfony/yaml": {
         "version": "v5.1.0"
     },
+    "thecodingmachine/safe": {
+        "version": "v1.3.3"
+    },
     "twig/twig": {
         "version": "v3.0.3"
     },
