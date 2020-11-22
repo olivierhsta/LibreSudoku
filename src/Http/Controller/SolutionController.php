@@ -3,16 +3,37 @@
 namespace App\Http\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Domain\Command\Solution\SolvePuzzleCommand;
+use App\Domain\Command\Solution\SolvePuzzleHandler;
+use App\Domain\Repository\PuzzleRepository;
 use App\Http\Response\PuzzleResponse;
+use Ramsey\Uuid\Uuid;
 
 class SolutionController extends AbstractController
 {
-    public function __invoke(string $encoding)
+    /**
+     * @var SolvePuzzleHandler
+     */
+    private $handler;
+
+    /**
+     * @var PuzzleRepository
+     */
+    private $puzzleRepository;
+
+    public function __construct(
+        SolvePuzzleHandler $handler,
+        PuzzleRepository $puzzleRepository
+    ) {
+        $this->handler = $handler;
+        $this->puzzleRepository = $puzzleRepository;
+    }
+
+    public function __invoke(string $uuid)
     {
         $command = new SolvePuzzleCommand(
-            $this->puzzleFactory->create($this->gridFactory->create($encoding)),
-            $this->puzzleRepository
+            $this->puzzleRepository->fetchOne(Uuid::fromString($uuid))
         );
-        return $command->handle();
+        return $this->handler->handle($command);
     }
 }

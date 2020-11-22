@@ -27,8 +27,8 @@ get_puzzle:
         _format: json
 
 solve_puzzle:
-   path: /puzzles/{encoding}/solution
-   controller: App\Http\Controller\SolutionController::index
-   methods: GET
+   path: /puzzles/{uuid}/solutions
+   controller: App\Http\Controller\SolutionController
+   methods: POST
    defaults:
         _format: json

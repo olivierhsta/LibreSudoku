@@ -2,13 +2,7 @@
 
 namespace App\Domain\Command\Solution;
 
-use App\Domain\Command\Command;
-use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Entity\Puzzle;
-use App\Http\Response\SavePuzzleResponse;
-use App\Domain\Service\SolvabilityService;
-use App\Domain\Service\DifficultyService;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Command class to handle solving of a puzzle
@@ -18,26 +12,11 @@ class SolvePuzzleCommand
     /**
      * @var Puzzle
      */
-    private $puzzle;
-
-    /**
-     * @var PuzzleRepository
-     */
-    private $puzzleRepository;
+    public $puzzle;
 
     function __construct(
-        Puzzle $puzzle,
-        PuzzleRepository $puzzleRepository
+        Puzzle $puzzle
     ) {
         $this->puzzle = $puzzle;
-        $this->puzzleRepository = $puzzleRepository;
-    }
-
-    public function handle(): JsonResponse
-    {
-        $puzzle = $this->puzzleRepository->store(
-            $this->puzzle
-        );
-        return new SavePuzzleResponse($puzzle);
     }
 }
