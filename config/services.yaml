@@ -32,9 +32,3 @@ services:
     App\EventListener\ExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
-
-    App\Domain\Service\Solvers\SolverInterface:
-        class: App\Domain\Service\Solvers\CompositeSolver
-        arguments:
-            -
-                - '@App\Domain\Service\Solvers\OneChoiceSolver'

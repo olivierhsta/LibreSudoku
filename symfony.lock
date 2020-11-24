@@ -102,6 +102,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.4"
     },
+    "myclabs/php-enum": {
+        "version": "1.7.7"
+    },
     "nikic/php-parser": {
         "version": "v4.5.0"
     },
