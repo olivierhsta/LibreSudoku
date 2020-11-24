@@ -6,13 +6,18 @@ use App\Domain\Entity\Puzzle;
 
 class OneChoiceSolver implements SolverInterface
 {
-    public function solve(Puzzle $puzzle)
+    /**
+     * @var SolverInterface
+     */
+    public $decoratingSolver;
+
+    public function __construct(SolverInterface $decoratingSolver)
     {
-        return 'solving with one choice';
+        $this->decoratingSolver = $decoratingSolver;
     }
 
-    public function supports(): bool
+    public function solve(Puzzle $puzzle)
     {
-        return true;
+        return $decoratingSolver->solver() . ' and solving with one choice';
     }
 }
