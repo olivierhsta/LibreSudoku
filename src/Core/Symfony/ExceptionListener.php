@@ -5,7 +5,6 @@ namespace App\EventListener;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use DomainException;
 use Throwable;
 use App\Http\HttpExceptionMapper;
 
@@ -16,10 +15,8 @@ class ExceptionListener
         $exception = $event->getThrowable();
         $request   = $event->getRequest();
 
-        if ($exception instanceof DomainException) {
-            $response = $this->createApiResponse($exception);
-            $event->setResponse($response);
-        }
+        $response = $this->createApiResponse($exception);
+        $event->setResponse($response);
     }
 
     private function createApiResponse(Throwable $exception): JsonResponse
