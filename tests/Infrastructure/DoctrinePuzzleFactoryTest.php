@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use App\Infrastructure\Factory\DoctrinePuzzleFactory;
 use App\Domain\Service\SolvabilityService;
 use App\Domain\Service\DifficultyService;
-use App\Http\Factory\GridFactory;
+use App\Domain\Factory\GridFactory;
 use App\Domain\Value\Difficulty;
 
 class DoctrinePuzzleFactoryTest extends TestCase

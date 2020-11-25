@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Factory\PuzzleFactory;
 use App\Http\Request\StorePuzzleRequest;
-use App\Http\Factory\GridFactory;
+use App\Domain\Factory\GridFactory;
 use App\Domain\Command\Puzzle\StorePuzzleCommand;
 use App\Domain\Command\Puzzle\StorePuzzleHandler;
 use App\Domain\Value\Grid;

@@ -4,7 +4,7 @@ namespace App\Tests\Http;
 
 use PHPUnit\Framework\TestCase;
 use App\Domain\Exception\InvalidPuzzleEncodingException;
-use App\Http\Factory\GridFactory;
+use App\Domain\Factory\GridFactory;
 
 class GridFactoryTest extends TestCase
 {
