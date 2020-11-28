@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Http;
+namespace App\Tests\Domain\Factory;
 
 use PHPUnit\Framework\TestCase;
 use App\Domain\Exception\InvalidPuzzleEncodingException;
@@ -8,9 +8,7 @@ use App\Domain\Factory\GridFactory;
 
 class GridFactoryTest extends TestCase
 {
-    /**
-     * @dataProvider gridFactoryProvider
-     */
+    /** @dataProvider gridFactoryProvider */
     public function test_create(array $encoding, bool $exceptionIsExpected)
     {
         if ($exceptionIsExpected) {

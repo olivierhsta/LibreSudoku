@@ -38,7 +38,7 @@ class Grid
     public function getPureEncoding(): array
     {
         return array_filter($this->encoding, function($cellEncoding) {
-            return is_array($cellEncoding) ? null : (int) $cellEncoding === 0 ? null : $cellEncoding;
+            return is_array($cellEncoding) ? null : ((int) $cellEncoding === 0 ? null : $cellEncoding);
         });
     }
 
