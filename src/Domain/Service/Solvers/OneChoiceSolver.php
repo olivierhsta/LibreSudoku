@@ -4,7 +4,7 @@ namespace App\Domain\Service\Solvers;
 
 use App\Domain\Entity\Puzzle;
 
-class OneChoiceSolver implements SolverInterface
+class OneChoiceSolver extends Solver
 {
     public static function new(): self
     {
@@ -13,6 +13,7 @@ class OneChoiceSolver implements SolverInterface
 
     public function solve(Puzzle $puzzle)
     {
-        return 'Solving with one choice';
+        echo 'Solving with one choice';
+        $this->next();
     }
 }

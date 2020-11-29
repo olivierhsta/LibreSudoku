@@ -2,7 +2,7 @@
 
 namespace App\Domain\Command\Solution;
 
-use App\Domain\Service\Solvers\SolverInterface;
+use App\Domain\Service\Solvers\Solver;
 use App\Domain\Entity\Puzzle;
 
 class SolvePuzzleHandler

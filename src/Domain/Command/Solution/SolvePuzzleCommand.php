@@ -3,7 +3,7 @@
 namespace App\Domain\Command\Solution;
 
 use App\Domain\Entity\Puzzle;
-use App\Domain\Service\Solvers\SolverInterface;
+use App\Domain\Service\Solvers\Solver;
 
 /**
  * Command class to handle solving of a puzzle
@@ -16,7 +16,7 @@ class SolvePuzzleCommand
     public $puzzle;
 
     /**
-     * @var SolverInterface[]
+     * @var Solver[]
      */
     public $solvers;
 

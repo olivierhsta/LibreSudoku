@@ -4,7 +4,7 @@ namespace App\Domain\Service\Solvers;
 
 use App\Domain\Entity\Puzzle;
 
-class EliminationSolver implements SolverInterface
+class EliminationSolver extends Solver
 {
     public static function new(): self
     {
@@ -13,6 +13,7 @@ class EliminationSolver implements SolverInterface
 
     public function solve(Puzzle $puzzle)
     {
-        return "Solving with elimination";
+        echo "Solving with elimination";
+        $this->next();
     }
 }
