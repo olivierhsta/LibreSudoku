@@ -3,6 +3,7 @@
 namespace App\Domain\Command\Solution;
 
 use App\Domain\Entity\Puzzle;
+use App\Domain\Value\Strategy;
 use App\Domain\Service\Solvers\Solver;
 
 /**
@@ -13,18 +14,18 @@ class SolvePuzzleCommand
     /**
      * @var Puzzle
      */
-    public $puzzle;
+    protected $puzzle;
 
     /**
-     * @var Solver[]
+     * @var Strategy[]
      */
-    public $solvers;
+    protected $strategies;
 
     function __construct(
         Puzzle $puzzle,
-        array $solvers
+        array $strategies
     ) {
         $this->puzzle = $puzzle;
-        $this->solvers = $solvers;
+        $this->strategies = $strategies;
     }
 }

@@ -6,19 +6,14 @@ use App\Domain\Value\Grid;
 use App\Domain\Value\Difficulty;
 use Ramsey\Uuid\UuidInterface;
 
-interface Puzzle
+abstract class Puzzle
 {
-    public function getPuzzleUuid(): UuidInterface;
-
-    public function getGrid(): Grid;
-
-    public function getSolvable(): bool;
-
-    public function getDifficulty(): Difficulty;
-
-    public function setGrid(Grid $grid): void;
-
-    public function setSolvable(bool $solvable  ): void;
-
-    public function setDifficulty(Difficulty $difficulty): void;
+    abstract public function getPuzzleUuid(): UuidInterface;
+    abstract public function getGrid(): Grid;
+    abstract public function getSolvable(): bool;
+    abstract public function getDifficulty(): Difficulty;
+    
+    abstract public function setGrid(Grid $grid): void;
+    abstract public function setSolvable(bool $solvable): void;
+    abstract public function setDifficulty(Difficulty $difficulty): void;
 }

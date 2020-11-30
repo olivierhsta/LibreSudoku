@@ -2,18 +2,13 @@
 
 namespace App\Domain\Service\Solvers;
 
-use App\Domain\Entity\Puzzle;
+use App\Domain\Entity\Solution;
 
 class EliminationSolver extends Solver
 {
-    public static function new(): self
-    {
-        return new self();
-    }
-
-    public function solve(Puzzle $puzzle)
+    public function solve(Solution $solution): Solution
     {
         echo "Solving with elimination";
-        $this->next();
+        $this->next($solution);
     }
 }

@@ -50,10 +50,10 @@ class SolutionController extends AbstractController
 
         $command = new SolvePuzzleCommand(
             $this->puzzleRepository->fetchOne(Uuid::fromString($uuid)),
-            $this->solverFactory->createfromStrategies($strategies)
+            ...$strategies
         );
         $solution = $this->handler->handle($command);
-        
+
         return new SolutionResponse($solution);
     }
 }

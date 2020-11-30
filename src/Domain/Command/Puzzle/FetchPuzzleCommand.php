@@ -12,7 +12,7 @@ class FetchPuzzleCommand
     /**
      * @var UuidInterface
      */
-    public $puzzleUuid;
+    protected $puzzleUuid;
 
     function __construct(UuidInterface $puzzleUuid)
     {

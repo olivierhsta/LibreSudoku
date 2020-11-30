@@ -17,7 +17,7 @@ class StorePuzzleCommand
     /**
      * @var Puzzle
      */
-    public $puzzle;
+    protected $puzzle;
 
     function __construct(
         Puzzle $puzzle

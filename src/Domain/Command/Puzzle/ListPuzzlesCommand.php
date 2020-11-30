@@ -13,12 +13,12 @@ class ListPuzzlesCommand
     /**
      * @var Difficulty
      */
-    public $difficulty;
+    protected $difficulty;
 
     /**
      * @var bool
      */
-    public $solvable;
+    protected $solvable;
 
     function __construct(?Difficulty $difficulty, ?bool $solvable)
     {

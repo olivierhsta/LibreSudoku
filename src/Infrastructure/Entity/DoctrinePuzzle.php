@@ -14,7 +14,7 @@ use Ramsey\Uuid\UuidInterface;
  * @ORM\Entity(repositoryClass=DoctrinePuzzleRepository::class)
  * @ORM\Table(name="puzzle")
  */
-class DoctrinePuzzle implements Puzzle
+class DoctrinePuzzle extends Puzzle
 {
     /**
      * @var UuidInterface
