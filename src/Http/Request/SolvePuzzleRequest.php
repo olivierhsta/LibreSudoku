@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use UnexpectedValueException;
 
-class SolutionRequest implements RequestDto
+class SolvePuzzleRequest implements RequestDto
 {
     /**
      * @var array

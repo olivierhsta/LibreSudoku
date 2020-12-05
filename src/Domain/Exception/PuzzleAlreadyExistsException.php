@@ -6,8 +6,8 @@ use DomainException;
 
 class PuzzleAlreadyExistsException extends DomainException
 {
-    function __construct(string $message, $code = 0, Exception $previous = null)
+    function __construct(string $encoding, $code = 0, Exception $previous = null)
     {
-        parent::__construct($message, $code, $previous);
+        parent::__construct('Puzzle with encoding ' . $encoding . ' already exists.', $code, $previous);
     }
 }

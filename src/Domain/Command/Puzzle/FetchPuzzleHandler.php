@@ -5,11 +5,12 @@ namespace App\Domain\Command\Puzzle;
 use App\Domain\Exception\CouldNotFetchPuzzleException;
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Entity\Puzzle;
+use App\Domain\Command\Command;
 
 /**
  * Handler class to handle saving of a puzzle
  */
-class FetchPuzzleHandler
+class FetchPuzzleHandler extends Command
 {
     /**
      * @var PuzzleRepository
@@ -26,10 +27,10 @@ class FetchPuzzleHandler
     {
         try {
             $puzzle = $this->puzzleRepository->fetchOne(
-                $command->puzzleUuid
+                $command->puzzleUuid()
             );
         } catch (\Exception $exception) {
-            throw new CouldNotFetchPuzzleException($command->puzzleUuid, $exception->getCode(), $exception);
+            throw new CouldNotFetchPuzzleException($command->puzzleUuid(), $exception->getCode(), $exception);
         }
         return $puzzle;
     }

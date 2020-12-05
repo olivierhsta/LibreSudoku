@@ -5,11 +5,13 @@ namespace App\Domain\Command\Solution;
 use App\Domain\Entity\Puzzle;
 use App\Domain\Value\Strategy;
 use App\Domain\Service\Solvers\Solver;
+use App\Domain\Command\Command;
 
 /**
- * Command class to handle solving of a puzzle
+ * @method Puzzle puzzle()
+ * @method Strategy[] strategies()
  */
-class SolvePuzzleCommand
+class SolvePuzzleCommand extends Command
 {
     /**
      * @var Puzzle

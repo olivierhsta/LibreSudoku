@@ -5,7 +5,7 @@ namespace App\Http\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Domain\Entity\Puzzle;
 
-class SolutionResponse extends JsonResponse
+class SolvePuzzleResponse extends JsonResponse
 {
     const STATUS = 200;
 

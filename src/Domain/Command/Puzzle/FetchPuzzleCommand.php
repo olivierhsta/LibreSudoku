@@ -3,11 +3,12 @@
 namespace App\Domain\Command\Puzzle;
 
 use Ramsey\Uuid\UuidInterface;
+use App\Domain\Command\Command;
 
 /**
- * Command class to define fetching of a puzzle
+ * @method UuidInterface puzzleUuid()
  */
-class FetchPuzzleCommand
+class FetchPuzzleCommand extends Command
 {
     /**
      * @var UuidInterface

@@ -7,12 +7,12 @@ use App\Domain\Command\Solution\SolvePuzzleCommand;
 use App\Domain\Command\Solution\SolvePuzzleHandler;
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Factory\SolverFactory;
-use App\Http\Request\SolutionRequest;
-use App\Http\Response\SolutionResponse;
+use App\Http\Request\SolvePuzzleRequest;
+use App\Http\Response\SolvePuzzleResponse;
 use App\Domain\Value\Strategy;
 use Ramsey\Uuid\Uuid;
 
-class SolutionController extends AbstractController
+class SolvePuzzleController extends AbstractController
 {
     /**
      * @var SolvePuzzleHandler
@@ -39,7 +39,7 @@ class SolutionController extends AbstractController
         $this->solverFactory = $solverFactory;
     }
 
-    public function __invoke(SolutionRequest $request, string $uuid)
+    public function __invoke(SolvePuzzleRequest $request, string $uuid)
     {
         $strategies = array_map(
             function($strategy) {
@@ -50,10 +50,10 @@ class SolutionController extends AbstractController
 
         $command = new SolvePuzzleCommand(
             $this->puzzleRepository->fetchOne(Uuid::fromString($uuid)),
-            ...$strategies
+            $strategies
         );
         $solution = $this->handler->handle($command);
 
-        return new SolutionResponse($solution);
+        return new SolvePuzzleResponse($solution);
     }
 }

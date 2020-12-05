@@ -4,11 +4,13 @@ namespace App\Domain\Command\Puzzle;
 
 use App\Domain\Value\Difficulty;
 use Ramsey\Uuid\UuidInterface;
+use App\Domain\Command\Command;
 
 /**
- * Command class to define fetching of a list of puzzles
+ * @method Difficulty difficulty()
+ * @method bool solvable()
  */
-class ListPuzzlesCommand
+class ListPuzzlesCommand extends Command
 {
     /**
      * @var Difficulty

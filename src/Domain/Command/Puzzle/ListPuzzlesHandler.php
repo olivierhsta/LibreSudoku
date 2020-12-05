@@ -30,11 +30,11 @@ class ListPuzzlesHandler
     public function handle(ListPuzzlesCommand $command): array
     {
         $criteria = [];
-        if ($command->difficulty !== null) {
-            $criteria['difficulty'] = $command->difficulty->getValue();
+        if ($command->difficulty() !== null) {
+            $criteria['difficulty'] = $command->difficulty()->getValue();
         }
-        if ($command->solvable !== null) {
-            $criteria['solvable'] = $command->solvable;
+        if ($command->solvable() !== null) {
+            $criteria['solvable'] = $command->solvable();
         }
 
         try {
