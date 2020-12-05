@@ -23,9 +23,16 @@ abstract class Solver
         // TODO: Write pencil marks, instantiate Solution
     }
 
-    public function setNext(Solver $nextSolver): self
+    public function setNext(?Solver $nextSolver): self
     {
         $this->nextSolver = $nextSolver;
+
+        return $this;
+    }
+
+    public function getNext(): ?Solver
+    {
+        return $this->nextSolver;
     }
 
     public function next(Solution $solution)

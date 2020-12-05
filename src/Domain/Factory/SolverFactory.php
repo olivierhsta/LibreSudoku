@@ -20,12 +20,22 @@ class SolverFactory
     ];
 
     /**
+     * Constructs a chain of solvers starting with the solver associated
+     * with the first strategy provided and finishing with the last.
+     *
      * @param Strategy[]
-     * @return Solver[]
+     *
+     * @return Solver first solver of the chain
      */
-    public function createFromStrategies(array $strategies): array
+    public function createFromStrategies(array $strategies): Solver
     {
-        return array_map([$this, 'createFromStrategy'], array_intersect($strategies, array_keys(self::$strategyMapping)));
+        $lastSolver = null;
+        foreach (array_reverse($strategies) as $strategy) {
+            $solver = $this->createFromStrategy($strategy);
+            $solver->setNext($lastSolver);
+            $lastSolver = $solver;
+        }
+        return $lastSolver;
     }
 
     public function createFromStrategy(Strategy $strategy): Solver

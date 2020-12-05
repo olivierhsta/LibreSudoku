@@ -13,17 +13,20 @@ class SolverFactoryTest extends TestCase
     /** @dataProvider strategies_solvers_provider */
     public function test_create_from_strategies(array $strategies, array $expectedSolvers)
     {
-        $actualSolvers = SolverFactory::new()->createFromStrategies($strategies);
+        $actualSolver = SolverFactory::new()->createFromStrategies($strategies);
 
-        $this->assertEquals($actualSolvers, $expectedSolvers);
+        foreach ($expectedSolvers as $expectedSolver) {
+            $this->assertInstanceOf($expectedSolver, $actualSolver);
+            $actualSolver = $actualSolver->getNext();
+        }
     }
 
     public function strategies_solvers_provider(): array
     {
         return [
-            [[Strategy::ONE_CHOICE(), Strategy::ELIMINATION()],[OneChoiceSolver::new(), EliminationSolver::new()]],
-            [[Strategy::ONE_CHOICE()],[OneChoiceSolver::new()]],
-            [[Strategy::ELIMINATION()],[EliminationSolver::new()]],
+            [[Strategy::ONE_CHOICE(), Strategy::ELIMINATION()],[OneChoiceSolver::class, EliminationSolver::class]],
+            [[Strategy::ONE_CHOICE()],[OneChoiceSolver::class]],
+            [[Strategy::ELIMINATION()],[EliminationSolver::class]],
         ];
     }
 }
