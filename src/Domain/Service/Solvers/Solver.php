@@ -20,7 +20,13 @@ abstract class Solver
 
     public static function prepare(Puzzle $puzzle): Solution
     {
-        // TODO: Write pencil marks, instantiate Solution
+        foreach ($grid->getGrid() as $cell) {
+            if ($cell->isEmpty()) {
+                $buddies = Grid::getValues($cell->getBuddies());
+                $cell->setPencilMarks(array_diff(config()->get('sudoku.fullGroup'), $buddies));
+            }
+        }
+        return $grid;
     }
 
     public function setNext(?Solver $nextSolver): self

@@ -11,11 +11,13 @@ class Cell
     const MIN_CELL_VALUE = 1;
     const EMPTY_CELL_VALUE = 0;
 
+    protected $key;
     protected $candidates;
     protected $value;
 
-    function __construct($content)
+    function __construct(int $key, $content)
     {
+        $this->key = $key;
         if ($this->isValidValue($content)) {
             $this->candidates = null;
             $this->value = $content;
@@ -43,6 +45,31 @@ class Cell
     public function getValue(): int
     {
         return $this->value;
+    }
+
+    public function isEmpty(): bool
+    {
+        return $this->value === 0 || $this->candidates === [];
+    }
+
+    public function key(): int
+    {
+        return $this->key;
+    }
+
+    public function row(): int
+    {
+        return floor($this->box / 3) * 3 + floor(($this->key % 9) / 3);
+    }
+
+    public function column(): int
+    {
+        return ($this->box() % 3) * 3 + ($this->key % 3);
+    }
+
+    public function box(): int
+    {
+        return floor($this->key/9);
     }
 
     private function isValidValue($content)

@@ -24,9 +24,9 @@ class GridFactory
 
     public function createFromEncoding(array $encoding): Grid
     {
-        return new Grid(array_map(function ($cellContent) {
-            return new Cell($cellContent);
-        }, $encoding));
+        return new Grid(array_map(function ($key, $cellContent) {
+            return new Cell($key, $cellContent);
+        }, array_keys($encoding), $encoding));
     }
 
     public function random(): Grid
