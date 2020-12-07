@@ -9,7 +9,6 @@ use App\Domain\Exception\InvalidPuzzleEncodingException;
  */
 class Grid
 {
-
     /**
      * @var Cell[]
      */
@@ -52,13 +51,26 @@ class Grid
         for ($i = 0; $i < count($this->cells); $i++) {
             $cell = $this->cells[$i];
             if ($cell->containsCandidates() && $withCandidates) {
-                $encoding[$i] = $cell->getCandidates();
+                if (!empty($cell->getCandidates()) || (empty($cell->getCandidates()) && $withEmpties)) {
+                    $encoding[$i] = $cell->getCandidates();
+                }
             }
             if ($cell->containsValue() && ($cell->getValue() !== 0 || $withEmpties)) {
                 $encoding[$i] = $cell->getValue();
             }
         }
         return $encoding;
+    }
+
+    /**
+     * A buddy of a cell is a cell that is either in the
+     * same row, column of box as the cell
+     *
+     * @return Cell[] buddies of the given cell
+     */
+    public function findBuddies(Cell $cell): array
+    {
+        // TODO
     }
 
     public function __toString(): string

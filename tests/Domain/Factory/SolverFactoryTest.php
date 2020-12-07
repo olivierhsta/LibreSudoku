@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Domain\Factory;
+namespace Tests\Domain\Factory;
 
 use PHPUnit\Framework\TestCase;
 use App\Domain\Value\Strategy;

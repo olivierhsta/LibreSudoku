@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Infrastructure;
+namespace Tests\Infrastructure;
 
 use PHPUnit\Framework\TestCase;
 use App\Infrastructure\Factory\DoctrinePuzzleFactory;
