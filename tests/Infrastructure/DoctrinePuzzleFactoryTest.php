@@ -16,7 +16,7 @@ class DoctrinePuzzleFactoryTest extends TestCase
      */
     public function test_create(array $encoding, bool $expectedSolvable, int $expectedDifficuly)
     {
-        $grid = (new GridFactory())->create($encoding);
+        $grid = GridFactory::new()->createFromEncoding($encoding);
 
         $puzzleFactory = new DoctrinePuzzleFactory(
             new SolvabilityService(),

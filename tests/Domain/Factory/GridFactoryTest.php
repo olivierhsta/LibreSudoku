@@ -15,7 +15,7 @@ class GridFactoryTest extends TestCase
             $this->expectException(InvalidPuzzleEncodingException::class);
         }
 
-        $grid = GridFactory::new()->create($encoding);
+        $grid = GridFactory::new()->createFromEncoding($encoding);
 
         $this->assertEquals($grid->getEncoding(), $encoding);
     }

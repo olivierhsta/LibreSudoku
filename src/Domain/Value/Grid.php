@@ -10,7 +10,9 @@ use App\Domain\Exception\InvalidPuzzleEncodingException;
 class Grid
 {
 
-    private $encoding;
+    /**
+     * @var Cell[]
+     */
     private $cells;
 
     /**
@@ -28,19 +30,15 @@ class Grid
      * │  60  61  62 │  69  70  71  │  78  79  80   │
      * └───────┴────────┴────────┘
      *
+     * @param Cell[] $cells
      * @throws InvalidPuzzleEncodingException
      */
-    public function __construct(array $encoding)
+    public function __construct(array $cells)
     {
-        if (count($encoding) !== 81) {
+        if (count($cells) !== 81) {
             throw new InvalidPuzzleEncodingException();
         }
-        $this->encoding = [];
-        foreach ($encoding as $cellContent) {
-            $cell = new Cell($cellContent);
-            $this->cells[] = $cell;
-            $this->encoding[] = $cell->containsValue() ? $cell->getValue() : $cell->getCandidates();
-        }
+        $this->cells = $cells;
     }
 
     public function getCells(): array

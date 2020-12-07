@@ -4,6 +4,7 @@ namespace App\Tests\Domain\Value;
 
 use PHPUnit\Framework\TestCase;
 use App\Domain\Value\Grid;
+use App\Domain\Factory\GridFactory;
 
 class GridTest extends TestCase
 {
@@ -18,16 +19,17 @@ class GridTest extends TestCase
 
     public function gridEncodingProvider(): array
     {
+        $gridFactory = new GridFactory();
         $emptyEncoding = [
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         ];
         return [
-            [new Grid($emptyEncoding), $emptyEncoding, true, true   ,],
-            [new Grid($emptyEncoding), $emptyEncoding, false, true,],
+            [$gridFactory->createFromEncoding($emptyEncoding), $emptyEncoding, true, true,],
+            [$gridFactory->createFromEncoding($emptyEncoding), $emptyEncoding, false, true,],
             [
-                new Grid([
+                $gridFactory->createFromEncoding([
                     [1],[2],[3],[],[],[],[],[1,2,3,4],[],[],[],[4],[],[],[],[4,3,8],[],[],[],[],[],[3],[],[],[],[],[],
                     [],[],[],[],[],[],[],[4,5],[],[],[],[],[],[],[],[],[],[6],[],[],[],[3,1,9],[],[],[4],[],[],
                     [],[],[],[2],[],[],[],[],[],[],[],[],[],[],[],[9],[],[],[],[],[],[],[],[],[],[],[6],

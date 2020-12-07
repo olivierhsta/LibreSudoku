@@ -3,6 +3,7 @@
 namespace App\Domain\Factory;
 
 use App\Domain\Value\Grid;
+use App\Domain\Value\Cell;
 use Faker\Factory as FakerFactory;
 
 class GridFactory
@@ -21,9 +22,11 @@ class GridFactory
      */
     protected $faker;
 
-    public function create(array $encoding): Grid
+    public function createFromEncoding(array $encoding): Grid
     {
-        return new Grid($encoding);
+        return new Grid(array_map(function ($cellContent) {
+            return new Cell($cellContent);
+        }, $encoding));
     }
 
     public function random(): Grid

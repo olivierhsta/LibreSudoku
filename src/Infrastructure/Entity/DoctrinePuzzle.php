@@ -9,6 +9,7 @@ use App\Domain\Value\Grid;
 use App\Domain\Value\Difficulty;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
+use App\Domain\Factory\GridFactory;
 
 /**
  * @ORM\Entity(repositoryClass=DoctrinePuzzleRepository::class)
@@ -68,7 +69,7 @@ class DoctrinePuzzle extends Puzzle
 
     public function getGrid(): Grid
     {
-        return new Grid(str_split($this->grid, 1));
+        return GridFactory::new()->createFromEncoding(str_split($this->grid, 1));
     }
 
     public function getSolvable(): bool
