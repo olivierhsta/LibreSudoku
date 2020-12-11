@@ -40,9 +40,19 @@ class Grid
         $this->cells = $cells;
     }
 
+    /**
+     * @return Cell[]
+     */
     public function getCells(): array
     {
         return $this->cells;
+    }
+
+    public function getCell(int $key): Cell
+    {
+        foreach ($this->cells as $cell) {
+            if ($cell->key() === $key) return $cell;
+        }
     }
 
     public function getEncoding(bool $withCandidates = true, bool $withEmpties = true): array
@@ -68,9 +78,19 @@ class Grid
      *
      * @return Cell[] buddies of the given cell
      */
-    public function findBuddies(Cell $cell): array
+    public function getBuddiesOf(Cell $cell): array
     {
-        // TODO
+        $buddies = [];
+        foreach ($this->cells as $potentialBuddy) {
+            if ($cell->key() === $potentialBuddy->key()) continue;
+
+            if ($potentialBuddy->row() === $cell->row() ||
+                $potentialBuddy->column() === $cell->column() ||
+                $potentialBuddy->box() === $cell->box()) {
+                    $buddies[] = $potentialBuddy;
+            }
+        }
+        return $buddies;
     }
 
     public function __toString(): string

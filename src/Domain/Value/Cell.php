@@ -59,7 +59,7 @@ class Cell
 
     public function row(): int
     {
-        return floor($this->box / 3) * 3 + floor(($this->key % 9) / 3);
+        return floor($this->box() / 3) * 3 + floor(($this->key % 9) / 3);
     }
 
     public function column(): int
