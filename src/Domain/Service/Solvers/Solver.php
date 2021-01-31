@@ -21,10 +21,7 @@ abstract class Solver
     public static function prepare(Puzzle $puzzle): Solution
     {
         foreach ($grid->getGrid() as $cell) {
-            if ($cell->isEmpty()) {
-                $buddies = Grid::getValues($cell->getBuddies());
-                $cell->setPencilMarks(array_diff(config()->get('sudoku.fullGroup'), $buddies));
-            }
+            $grid->getBuddiesOf($cell);
         }
         return $grid;
     }

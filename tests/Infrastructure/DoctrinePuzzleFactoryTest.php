@@ -3,7 +3,7 @@
 namespace Tests\Infrastructure;
 
 use PHPUnit\Framework\TestCase;
-use App\Infrastructure\Factory\DoctrinePuzzleFactory;
+use App\Domain\Factory\PuzzleFactory;
 use App\Domain\Service\SolvabilityService;
 use App\Domain\Service\DifficultyService;
 use App\Domain\Factory\GridFactory;
@@ -18,7 +18,7 @@ class DoctrinePuzzleFactoryTest extends TestCase
     {
         $grid = GridFactory::new()->createFromEncoding($encoding);
 
-        $puzzleFactory = new DoctrinePuzzleFactory(
+        $puzzleFactory = new PuzzleFactory(
             new SolvabilityService(),
             new DifficultyService()
         );

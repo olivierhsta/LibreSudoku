@@ -4,7 +4,6 @@ namespace App\Infrastructure\Repository;
 
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Entity\Puzzle;
-use App\Infrastructure\Entity\DoctrinePuzzle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +16,7 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, DoctrinePuzzle::class);
+        parent::__construct($registry, Puzzle::class);
     }
 
     public function fetchOne(UuidInterface $puzzleUuid): Puzzle {

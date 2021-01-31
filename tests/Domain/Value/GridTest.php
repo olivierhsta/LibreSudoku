@@ -74,9 +74,14 @@ class GridTest extends TestCase
         ];
     }
 
-    /** @dataProvider buddiesProvider */
-    public function test_buddies(Grid $grid, int $cellKey, array $expectedBuddies)
+    /** @dataProvider cellAttributeProvider */
+    public function test_cell_attributes(Grid $grid, int $cellKey, int $value, int $box, int $row, int $column, array $expectedBuddies)
     {
+        $this->assertEquals($grid->getCell($cellKey)->getValue(), $value);
+        $this->assertEquals($grid->getCell($cellKey)->box(), $box);
+        $this->assertEquals($grid->getCell($cellKey)->row(), $row);
+        $this->assertEquals($grid->getCell($cellKey)->column(), $column);
+
         $actualBuddies = $grid->getBuddiesOf($grid->getCell($cellKey));
         $this->assertEquals(count($expectedBuddies), count($actualBuddies));
         foreach ($actualBuddies as $buddy) {
@@ -85,7 +90,7 @@ class GridTest extends TestCase
         }
     }
 
-    public function buddiesProvider(): array
+    public function cellAttributeProvider(): array
     {
         /*
         2,0,0 | 3,6,4 | 0,0,0
@@ -109,6 +114,10 @@ class GridTest extends TestCase
             [
                 $grid,
                 0,
+                2, // value
+                0, // box
+                0, // row
+                0, // col
                 [
                     1 => 0, 2 => 0, 3 => 0, 4 => 7, 5 => 0, 6 => 5, 7 => 4, 8 => 0, // box
                     9 => 3, 10 => 6, 11 => 4, 18 => 0, 19 => 0, 20 => 0, // row
@@ -118,10 +127,27 @@ class GridTest extends TestCase
             [
                 $grid,
                 40,
+                0, // value
+                4, // box
+                4, // row
+                4, // col
                 [
                     36 => 8, 37 => 0, 38 => 0, 39 => 0, 41 => 0, 42 => 0, 43 => 0, 44 => 5, // box
                     30 => 0, 31 => 5, 32 => 9, 48 => 7, 49 => 1, 50 => 0, // row
                     10 => 6, 13 => 5, 16 => 0, 64 => 0, 67 => 7, 70 => 2, // column
+                ]
+            ],
+            [
+                $grid,
+                74,
+                8, // value
+                8, // box
+                6, // row
+                8, // col
+                [
+                    72 => 0, 73 => 2, 75 => 0, 76 => 5, 77 => 0, 78 => 0, 79 => 0, 80 => 7, // box
+                    54 => 7, 55 => 0, 56 => 0, 63 => 0, 64 => 0, 65 => 0, // row
+                    20 => 0, 23 => 6, 26 => 3, 47 => 0, 50 => 0, 53 => 0, // column
                 ]
             ]
         ];
