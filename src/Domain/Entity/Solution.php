@@ -1,9 +1,20 @@
 <?php
 
-namespace App\Domain\Entity\Solution;
+namespace App\Domain\Entity;
 
-interface Solution
+class Solution
 {
-    public function getPuzzle(): Puzzle;
-    public function setPuzzle(Puzzle $puzzle): void;
+    /**
+     * @var Puzzle
+     */
+    private $puzzle;
+
+    public function __construct(Puzzle $puzzle)
+    {
+        $this->puzzle = $puzzle;
+    }
+
+    public function getPuzzle(): Puzzle {
+        return $this->puzzle;
+    }
 }

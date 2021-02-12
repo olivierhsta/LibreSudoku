@@ -2,6 +2,7 @@
 
 namespace App\Domain\Service\Solvers;
 
+use App\Domain\Entity\Puzzle;
 use App\Domain\Entity\Solution;
 
 abstract class Solver
@@ -15,15 +16,15 @@ abstract class Solver
 
     public static function new(): self
     {
-        return new self();
+        return new static();
     }
 
     public static function prepare(Puzzle $puzzle): Solution
     {
-        foreach ($grid->getGrid() as $cell) {
-            $grid->getBuddiesOf($cell);
+        foreach ($puzzle->getGrid() as $cell) {
+            $puzzle->getGrid()->getBuddiesOf($cell);
         }
-        return $grid;
+        return $puzzle->getGrid();
     }
 
     public function setNext(?Solver $nextSolver): self

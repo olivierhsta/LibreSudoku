@@ -34,11 +34,6 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
 
     }
 
-    /**
-     * @throws ORMInvalidArgumentException
-     * @throws ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
     public function store(Puzzle $puzzle): Puzzle {
         $entityManager = $this->getEntityManager();
 

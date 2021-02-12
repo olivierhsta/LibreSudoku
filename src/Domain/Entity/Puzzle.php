@@ -4,6 +4,9 @@ namespace App\Domain\Entity;
 
 use App\Domain\Value\Grid;
 use App\Domain\Value\Difficulty;
+use Carbon\Carbon;
+use DateTimeInterface;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use App\Domain\Factory\GridFactory;
 
@@ -12,7 +15,7 @@ class Puzzle
     /**
      * @var UuidInterface
      */
-    private $puzzle_uuid;
+    private $puzzleUuid;
 
     /**
      * @var string
@@ -30,18 +33,30 @@ class Puzzle
     private $difficulty;
 
     /**
-     * @var DateTimeImmutable
+     * @var DateTimeInterface
      */
     private $createdAt;
 
     /**
-     * @var DateTimeImmutable
+     * @var DateTimeInterface
      */
     private $updatedAt;
 
+    public function __construct(
+        Grid $grid,
+        bool $solvable,
+        Difficulty $difficulty
+    ) {
+        $this->puzzleUuid = Uuid::uuid4();
+        $this->grid = (string) $grid;
+        $this->solvable = $solvable;
+        $this->difficulty = $difficulty->getValue();
+        $this->createdAt = $this->updatedAt = Carbon::now();
+    }
+
     public function getPuzzleUuid(): UuidInterface
     {
-        return $this->puzzle_uuid;
+        return $this->puzzleUuid;
     }
 
     public function getGrid(): Grid
@@ -59,18 +74,13 @@ class Puzzle
         return new Difficulty($this->difficulty);
     }
 
-    public function setGrid(Grid $grid): void
+    public function getCreatedAt(): DateTimeInterface
     {
-        $this->grid = (string)$grid;
+        return $this->createdAt;
     }
 
-    public function setSolvable(bool $solvable): void
+    public function getUpdatedAt(): DateTimeInterface
     {
-        $this->solvable = $solvable;
-    }
-
-    public function setDifficulty(Difficulty $difficulty): void
-    {
-        $this->difficulty = $difficulty->getValue();
+        return $this->updatedAt;
     }
 }

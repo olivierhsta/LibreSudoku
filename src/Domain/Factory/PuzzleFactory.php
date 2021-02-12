@@ -28,12 +28,10 @@ class PuzzleFactory
 
     public function create(Grid $grid): Puzzle
     {
-        $puzzle = new Puzzle();
-
-        $puzzle->setGrid($grid);
-        $puzzle->setSolvable($this->solvabilityService->isGridSolvable($grid));
-        $puzzle->setDifficulty($this->difficultyService->findGridDifficulty($grid));
-
-        return $puzzle;
+        return new Puzzle(
+            $grid,
+            $this->solvabilityService->isGridSolvable($grid),
+            $this->difficultyService->findGridDifficulty($grid)
+        );
     }
 }
