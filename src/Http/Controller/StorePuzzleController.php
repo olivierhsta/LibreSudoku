@@ -49,7 +49,7 @@ class StorePuzzleController extends AbstractController
 
     public function __invoke(StorePuzzleRequest $storePuzzleRequest) {
         $command = new StorePuzzleCommand(
-            $this->puzzleFactory->create($this->gridFactory->createFromEncoding($storePuzzleRequest->encoding))
+            $this->puzzleFactory->createFromEncoding($storePuzzleRequest->encoding)
         );
         $puzzle = $this->handler->handle($command);
         return new StorePuzzleResponse($puzzle);

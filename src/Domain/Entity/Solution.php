@@ -9,12 +9,26 @@ class Solution
      */
     private $puzzle;
 
-    public function __construct(Puzzle $puzzle)
-    {
+    /**
+     * @var bool
+     */
+    private $completed;
+
+    public function __construct(
+        Puzzle $puzzle,
+        bool $completed
+    ) {
         $this->puzzle = $puzzle;
+        $this->completed = $completed;
     }
 
-    public function getPuzzle(): Puzzle {
+    public function isCompleted(): bool
+    {
+        return $this->completed;
+    }
+
+    public function getPuzzle(): Puzzle
+    {
         return $this->puzzle;
     }
 }

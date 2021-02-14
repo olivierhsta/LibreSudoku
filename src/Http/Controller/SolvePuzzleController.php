@@ -52,8 +52,8 @@ class SolvePuzzleController extends AbstractController
             $this->puzzleRepository->fetchOne(Uuid::fromString($uuid)),
             $strategies
         );
-        $solution = $this->handler->handle($command);
+        $solvedPuzzle = $this->handler->handle($command);
 
-        return new SolvePuzzleResponse($solution);
+        return new SolvePuzzleResponse($solvedPuzzle);
     }
 }

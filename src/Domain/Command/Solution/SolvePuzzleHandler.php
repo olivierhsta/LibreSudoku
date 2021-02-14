@@ -4,7 +4,6 @@ namespace App\Domain\Command\Solution;
 
 use App\Domain\Service\Solvers\Solver;
 use App\Domain\Entity\Puzzle;
-use App\Domain\Entity\Solution;
 use App\Domain\Factory\SolverFactory;
 
 class SolvePuzzleHandler

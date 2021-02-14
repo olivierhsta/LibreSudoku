@@ -4,6 +4,9 @@ namespace App\Domain\Value;
 
 use App\Domain\Exception\InvalidPuzzleEncodingException;
 
+/**
+ * Cell value.  Immutable
+ */
 class Cell
 {
     const MAX_CANDIDATES = 9;
@@ -42,7 +45,7 @@ class Cell
         return $this->candidates;
     }
 
-    public function getValue(): int
+    public function getValue(): ?int
     {
         return $this->value;
     }
@@ -92,5 +95,16 @@ class Cell
             return true;
         }
         return false;
+    }
+
+    /**
+     * @param int[] $candidates
+     */
+    public function setCandidates(array $candidates): self
+    {
+        return new self(
+            $this->key,
+            $candidates
+        );
     }
 }

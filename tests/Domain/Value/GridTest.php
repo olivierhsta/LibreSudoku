@@ -2,6 +2,7 @@
 
 namespace Tests\Domain\Value;
 
+use App\Domain\Value\Cell;
 use PHPUnit\Framework\TestCase;
 use App\Domain\Value\Grid;
 use App\Domain\Factory\GridFactory;
@@ -9,11 +10,8 @@ use App\Domain\Factory\GridFactory;
 class GridTest extends TestCase
 {
     /** @dataProvider gridEncodingProvider */
-    public function test_get_encoding(Grid $grid, array $expectedEncoding, bool $withCandidates, bool $withEmpties, string $exceptionClass = null)
+    public function test_get_encoding(Grid $grid, array $expectedEncoding, bool $withCandidates, bool $withEmpties)
     {
-        if ($exceptionClass !== null) {
-            $this->expectException($exceptionClass);
-        }
         $this->assertEquals($expectedEncoding, $grid->getEncoding($withCandidates, $withEmpties));
     }
 
@@ -151,5 +149,19 @@ class GridTest extends TestCase
                 ]
             ]
         ];
+    }
+
+    public function test_set_cell()
+    {
+        $grid = GridFactory::new()->createFromEncoding([
+            [1,3,9],[2],[3],[],8,[],[],[1,2,3,4],[],[],[],[4],[],[],0,[4,3,8],[],[],[],0,[],[3],[],[],[],1,[],
+            [],[],[],[],[],0,[],[4,5],[],[],[],[],4,[],[],[],[],[6],[],[],[],[3,1,9],[],[],[4],[],[],
+            9,[],[],[2],[],[],[],[],[],[],0,[],[],[],[],[9],[],0,[],[],[],0,[],[],0,[],[6],
+        ]);
+
+        $updatedGrid = $grid->setCell(new Cell(0, 9));
+
+        $this->assertEquals($grid->getCell(0)->getCandidates(), [1,3,9]);
+        $this->assertEquals($updatedGrid->getCell(0)->getValue(), 9);
     }
 }
