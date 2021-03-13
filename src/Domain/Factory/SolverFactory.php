@@ -29,13 +29,13 @@ class SolverFactory
      */
     public function createFromStrategies(array $strategies): Solver
     {
-        $lastSolver = null;
+        $nextSolver = null;
         foreach (array_reverse($strategies) as $strategy) {
             $solver = $this->createFromStrategy($strategy);
-            $solver->setNext($lastSolver);
-            $lastSolver = $solver;
+            $solver->followedBy($nextSolver);
+            $nextSolver = $solver;
         }
-        return $lastSolver;
+        return $nextSolver;
     }
 
     public function createFromStrategy(Strategy $strategy): Solver

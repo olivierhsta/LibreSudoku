@@ -2,8 +2,10 @@
 
 namespace App\Domain\Entity;
 
+use App\Domain\Value\Cell;
 use App\Domain\Value\Grid;
 use App\Domain\Value\Difficulty;
+use App\Domain\Value\Strategy;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Ramsey\Uuid\Uuid;
@@ -42,16 +44,23 @@ class Puzzle
      */
     private $updatedAt;
 
+    /**
+     * @var Solution|null
+     */
+    private $solution;
+
     public function __construct(
         Grid $grid,
         bool $solvable,
-        Difficulty $difficulty
+        Difficulty $difficulty,
+        Solution $solution = null
     ) {
         $this->puzzleUuid = Uuid::uuid4();
         $this->grid = (string) $grid;
         $this->solvable = $solvable;
         $this->difficulty = $difficulty->getValue();
         $this->createdAt = $this->updatedAt = Carbon::now();
+        $this->solution = $solution;
     }
 
     public function getPuzzleUuid(): UuidInterface
@@ -82,5 +91,23 @@ class Puzzle
     public function getUpdatedAt(): DateTimeInterface
     {
         return $this->updatedAt;
+    }
+
+    public function getSolution(): Solution
+    {
+        return $this->solution;
+    }
+
+    public function fill(Cell $cell, Strategy $strategy): self
+    {
+        $this->solution->addStep(
+            new SolutionStep(
+                $this->getGrid()->setCell($cell),
+                $strategy,
+                $cell->key()
+            )
+        );
+
+        return $this;
     }
 }

@@ -14,13 +14,7 @@
             <unique-constraint columns="puzzle_uuid" name="UC_puzzle_uuid" />
         </unique-constraints>
 
-        <!-- <lifecycle-callbacks>
-            <lifecycle-callback type="prePersist" method="doStuffOnPrePersist"/>
-            <lifecycle-callback type="prePersist" method="doOtherStuffOnPrePersistToo"/>
-            <lifecycle-callback type="postPersist" method="doStuffOnPostPersist"/>
-        </lifecycle-callbacks> -->
-
-        <id name="puzzle_uuid" type="uuid" column="puzzle_uuid">
+        <id name="puzzleUuid" type="uuid" column="puzzle_uuid">
             <generator strategy="CUSTOM"/>
             <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
         </id>

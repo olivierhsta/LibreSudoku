@@ -2,13 +2,13 @@
 
 namespace App\Domain\Service\Solvers;
 
-use App\Domain\Entity\Solution;
+use App\Domain\Entity\Puzzle;
 
 class OneChoiceSolver extends Solver
 {
-    public function solve(Solution $solution): Solution
+    public function solve(Puzzle $puzzle): Puzzle
     {
         echo 'Solving with one choice';
-        $this->next($solution);
+        $this->next($puzzle);
     }
 }

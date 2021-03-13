@@ -8,11 +8,6 @@ use App\Domain\Value\Strategy;
 class SolutionStep
 {
     /**
-     * @var Solution
-     */
-    private $solution;
-
-    /**
      * @var Grid
      */
     private $grid;
@@ -27,15 +22,20 @@ class SolutionStep
      */
     private $affectedCell;
 
-    public function __construct(Solution $solution, Grid $grid, Strategy $lastStrategy, int $affectedCell)
+    /**
+     * @var Solution|null
+     */
+    private $solution;
+
+    public function __construct(Grid $grid, Strategy $lastStrategy, int $affectedCell, Solution $solution = null)
     {
-        $this->solution = $solution;
         $this->grid = $grid;
         $this->lastStrategy = $lastStrategy;
         $this->affectedCell = $affectedCell;
+        $this->solution = $solution;
     }
 
-    public function getSolution(): Solution
+    public function getSolution(): ?Solution
     {
         return $this->solution;
     }
@@ -53,5 +53,11 @@ class SolutionStep
     public function getAffectedCell(): int
     {
         return $this->affectedCell;
+    }
+
+    public function setSolution(Solution $solution): SolutionStep
+    {
+        $this->solution = $solution;
+        return $this;
     }
 }

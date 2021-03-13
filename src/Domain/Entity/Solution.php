@@ -5,20 +5,20 @@ namespace App\Domain\Entity;
 class Solution
 {
     /**
-     * @var Puzzle
+     * @var array
      */
-    private $puzzle;
+    private $steps;
 
     /**
      * @var bool
      */
     private $completed;
 
-    public function __construct(
-        Puzzle $puzzle,
-        bool $completed
+    protected function __construct(
+        array $steps = [],
+        bool $completed = false
     ) {
-        $this->puzzle = $puzzle;
+        $this->steps = $steps;
         $this->completed = $completed;
     }
 
@@ -27,8 +27,15 @@ class Solution
         return $this->completed;
     }
 
-    public function getPuzzle(): Puzzle
+    public function addStep(SolutionStep $step): self
     {
-        return $this->puzzle;
+        $this->steps[] = $step->setSolution($this);
+
+        return $this;
+    }
+
+    public function getSteps(): array
+    {
+        return $this->steps;
     }
 }

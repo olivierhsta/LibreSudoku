@@ -26,13 +26,9 @@ class FetchPuzzleHandler extends Command
 
     public function handle(FetchPuzzleCommand $command): Puzzle
     {
-        try {
-            $puzzle = $this->puzzleRepository->fetchOne(
-                $command->puzzleUuid()
-            );
-        } catch (Exception $exception) {
-            throw new CouldNotFetchPuzzleException($command->puzzleUuid(), $exception->getCode(), $exception);
-        }
+        $puzzle = $this->puzzleRepository->fetchOne(
+            $command->puzzleUuid()
+        );
         return $puzzle;
     }
 }

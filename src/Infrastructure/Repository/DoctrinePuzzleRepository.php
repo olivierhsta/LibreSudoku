@@ -2,12 +2,14 @@
 
 namespace App\Infrastructure\Repository;
 
+use App\Domain\Exception\CouldNotFetchPuzzleException;
 use App\Domain\Repository\PuzzleRepository;
 use App\Domain\Entity\Puzzle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Ramsey\Uuid\UuidInterface;
+use Throwable;
 
 /**
  * Implementation of the PuzzleRepository Interface for a Doctrine object manager
@@ -20,7 +22,14 @@ class DoctrinePuzzleRepository extends ServiceEntityRepository implements Puzzle
     }
 
     public function fetchOne(UuidInterface $puzzleUuid): Puzzle {
-        return $this->findOneBy(['puzzle_uuid' => $puzzleUuid]);
+        try {
+            /** @var Puzzle $puzzle */
+            $puzzle = $this->findOneBy(['puzzleUuid' => $puzzleUuid]);
+        } catch (Throwable $exception) {
+            throw new CouldNotFetchPuzzleException($puzzleUuid, $exception->getCode(), $exception);
+        }
+
+        return $puzzle;
     }
 
     /**
