@@ -21,7 +21,7 @@
 
         <field name="grid" column="grid" type="string" length="255" />
         <field name="solvable" column="solvable" type="boolean" />
-        <field name="difficulty" column="difficulty" type="integer" />
+        <field name="difficulty" column="difficulty" type="difficulty" />
         <field name="createdAt" column="created_at" type="datetime" />
         <field name="updatedAt" column="updated_at" type="datetime" />
 

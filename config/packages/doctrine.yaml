@@ -3,6 +3,7 @@ doctrine:
         url: '%env(resolve:DATABASE_URL)%'
         types:
             uuid: Ramsey\Uuid\Doctrine\UuidType
+            diffifulty: App\Infrastructure\Doctrine\Values\DifficultyType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
@@ -11,5 +12,5 @@ doctrine:
             App:
                 is_bundle: false
                 type: xml
-                dir: '%kernel.project_dir%/config/doctrine'
+                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Entities'
                 prefix: 'App\Domain\Entity'

@@ -1,6 +1,7 @@
 <?php
 
 use App\Kernel;
+use Doctrine\DBAL\Types\Type;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +24,10 @@ if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? false) {
     Request::setTrustedHosts([$trustedHosts]);
 }
 
-$driver = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(['/config/doctrine/' => 'App\Domain\Entity']);
+$driver = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(['/src/Infrastructure/Doctrine/Entities' => 'App\Domain\Entity']);
+Type::addType('difficulty', 'App\Infrastructure\Doctrine\Values\DifficultyType');
+
+
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 $request = Request::createFromGlobals();

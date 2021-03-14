@@ -10,7 +10,6 @@ use Carbon\Carbon;
 use DateTimeInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use App\Domain\Factory\GridFactory;
 
 class Puzzle
 {
@@ -20,7 +19,7 @@ class Puzzle
     private $puzzleUuid;
 
     /**
-     * @var string
+     * @var Grid
      */
     private $grid;
 
@@ -30,7 +29,7 @@ class Puzzle
     private $solvable;
 
     /**
-     * @var int
+     * @var Difficulty
      */
     private $difficulty;
 
@@ -56,9 +55,9 @@ class Puzzle
         Solution $solution = null
     ) {
         $this->puzzleUuid = Uuid::uuid4();
-        $this->grid = (string) $grid;
+        $this->grid = $grid;
         $this->solvable = $solvable;
-        $this->difficulty = $difficulty->getValue();
+        $this->difficulty = $difficulty;
         $this->createdAt = $this->updatedAt = Carbon::now();
         $this->solution = $solution;
     }
@@ -70,7 +69,7 @@ class Puzzle
 
     public function getGrid(): Grid
     {
-        return GridFactory::new()->createFromEncoding(str_split($this->grid, 1));
+        return $this->grid;
     }
 
     public function getSolvable(): bool
@@ -80,7 +79,7 @@ class Puzzle
 
     public function getDifficulty(): Difficulty
     {
-        return new Difficulty($this->difficulty);
+        return $this->difficulty;
     }
 
     public function getCreatedAt(): DateTimeInterface
