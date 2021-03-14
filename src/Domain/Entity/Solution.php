@@ -14,7 +14,7 @@ class Solution
      */
     private $completed;
 
-    protected function __construct(
+    public function __construct(
         array $steps = [],
         bool $completed = false
     ) {

@@ -3,7 +3,6 @@
 namespace App\Domain\Service\Solvers;
 
 use App\Domain\Entity\Puzzle;
-use App\Domain\Entity\Solution;
 use App\Domain\Value\Cell;
 use App\Domain\Value\Strategy;
 
@@ -11,6 +10,16 @@ abstract class Solver
 {
     /** @var Solver */
     private $nextSolver;
+
+    private static function findCandidates(array $buddies)
+    {
+        return array_diff(
+            Cell::FULL_SET,
+            array_unique(array_values(array_map(function(Cell $buddy) {
+                return $buddy->getValue();
+            }, $buddies)))
+        );
+    }
 
     abstract public function solve(Puzzle $puzzle): Puzzle;
 
@@ -28,9 +37,7 @@ abstract class Solver
         foreach ($puzzle->getGrid()->getCells() as $cell) {
             if ($cell->isEmpty()) {
                 $buddies = $puzzle->getGrid()->getBuddiesOf($cell);
-                $newCell = $cell->setCandidates(array_unique(array_values(array_map(function(Cell $buddy) {
-                    return $buddy->getValue();
-                }, $buddies))));
+                $newCell = $cell->setCandidates(self::findCandidates($buddies));
                 $puzzle->fill($newCell, Strategy::NULL());
             }
         }

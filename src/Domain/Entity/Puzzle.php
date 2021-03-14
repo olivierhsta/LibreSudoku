@@ -59,7 +59,7 @@ class Puzzle
         $this->solvable = $solvable;
         $this->difficulty = $difficulty;
         $this->createdAt = $this->updatedAt = Carbon::now();
-        $this->solution = $solution;
+        $this->solution = $solution ?? new Solution;
     }
 
     public function getPuzzleUuid(): UuidInterface
@@ -99,9 +99,11 @@ class Puzzle
 
     public function fill(Cell $cell, Strategy $strategy): self
     {
+        $this->grid = $this->grid->setCell($cell);
+
         $this->solution->addStep(
             new SolutionStep(
-                $this->getGrid()->setCell($cell),
+                $this->grid,
                 $strategy,
                 $cell->key()
             )

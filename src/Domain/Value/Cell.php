@@ -14,6 +14,8 @@ class Cell
     const MIN_CELL_VALUE = 1;
     const EMPTY_CELL_VALUE = 0;
 
+    const FULL_SET = [1,2,3,4,5,6,7,8,9];
+
     protected $key;
     protected $candidates;
     protected $value;
@@ -40,7 +42,7 @@ class Cell
         return !is_null($this->value);
     }
 
-    public function getCandidates(): array
+    public function getCandidates(): ?array
     {
         return $this->candidates;
     }
