@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Domain\Command\Solution\SolvePuzzleCommand;
 use App\Domain\Command\Solution\SolvePuzzleHandler;
 use App\Domain\Repository\PuzzleRepository;
-use App\Domain\Factory\SolverFactory;
 use App\Http\Request\SolvePuzzleRequest;
 use App\Http\Response\SolvePuzzleResponse;
 use App\Domain\Value\Strategy;
@@ -24,19 +23,12 @@ class SolvePuzzleController extends AbstractController
      */
     private $puzzleRepository;
 
-    /**
-     * @var SolverFactory
-     */
-    private $solverFactory;
-
     public function __construct(
         SolvePuzzleHandler $handler,
-        PuzzleRepository $puzzleRepository,
-        SolverFactory $solverFactory
+        PuzzleRepository $puzzleRepository
     ) {
         $this->handler = $handler;
         $this->puzzleRepository = $puzzleRepository;
-        $this->solverFactory = $solverFactory;
     }
 
     public function __invoke(SolvePuzzleRequest $request, string $uuid)

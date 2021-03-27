@@ -2,35 +2,36 @@
 
 namespace App\Infrastructure\Doctrine\Values;
 
+use App\Domain\Factory\GridFactory;
 use App\Domain\Value\Difficulty;
+use App\Domain\Value\Grid;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 
-class DifficultyType extends Type
+class GridType extends Type
 {
-
-    const DIFFICULTY = 'difficulty';
+    const GRID = 'grid';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return 'Difficulty';
+        return 'Grid';
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return new Difficulty($value);
+        return GridFactory::new()->createFromEncoding(str_split($value));
     }
 
     /**
-     * @param Difficulty $value
+     * @param Grid $value
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value->getValue();
+        return (string) $value;
     }
 
     public function getName()
     {
-        return self::DIFFICULTY;
+        return self::GRID;
     }
 }

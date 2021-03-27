@@ -19,7 +19,7 @@
             <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
         </id>
 
-        <field name="grid" column="grid" type="string" length="255" />
+        <field name="grid" column="grid" type="grid" />
         <field name="solvable" column="solvable" type="boolean" />
         <field name="difficulty" column="difficulty" type="difficulty" />
         <field name="createdAt" column="created_at" type="datetime" />

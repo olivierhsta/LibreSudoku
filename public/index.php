@@ -26,6 +26,7 @@ if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? false) {
 
 $driver = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(['/src/Infrastructure/Doctrine/Entities' => 'App\Domain\Entity']);
 Type::addType('difficulty', 'App\Infrastructure\Doctrine\Values\DifficultyType');
+Type::addType('grid', 'App\Infrastructure\Doctrine\Values\GridType');
 
 
 

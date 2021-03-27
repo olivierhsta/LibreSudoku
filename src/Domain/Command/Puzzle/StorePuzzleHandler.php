@@ -32,7 +32,7 @@ class StorePuzzleHandler
      */
     public function handle(StorePuzzleCommand $command): Puzzle
     {
-        if (count($this->puzzleRepository->fetchAll(['grid' => (string)$command->puzzle()->getGrid()])) > 0) {
+        if (count($this->puzzleRepository->fetchAll(['grid' => $command->puzzle()->getGrid()])) > 0) {
             throw new PuzzleAlreadyExistsException((string)$command->puzzle()->getGrid());
         }
 
