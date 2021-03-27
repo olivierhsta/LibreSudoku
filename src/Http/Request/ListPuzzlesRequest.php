@@ -8,7 +8,7 @@ use App\Http\Request\RequestDto;
 /**
  * API contract for the GET /puzzles endpoint
  */
-class ListPuzzlesRequest implements RequestDto
+class ListPuzzlesRequest extends RequestDto
 {
     /**
      * @var array
@@ -17,6 +17,8 @@ class ListPuzzlesRequest implements RequestDto
 
     function __construct(Request $request)
     {
+        parent::__construct($request);
+
         $this->criteria['difficulty'] = $request->query->get('difficulty');
         $this->criteria['solvable'] = $request->query->get('solvable');
     }

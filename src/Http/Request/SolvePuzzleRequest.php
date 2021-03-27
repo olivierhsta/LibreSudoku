@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use UnexpectedValueException;
 
-class SolvePuzzleRequest implements RequestDto
+class SolvePuzzleRequest extends RequestDto
 {
     /**
      * @var array
@@ -15,8 +15,8 @@ class SolvePuzzleRequest implements RequestDto
 
     function __construct(Request $request)
     {
-        $data = json_decode($request->getContent(), true);
+        parent::__construct($request);
 
-        $this->strategies = $data['strategies'] ?? [];
+        $this->strategies = $this->jsonData()['strategies'] ?? [];
     }
 }
