@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Domain\Factory;
+namespace Tests\Unit\Domain\Factory;
 
 use PHPUnit\Framework\TestCase;
 use App\Domain\Exception\InvalidPuzzleEncodingException;

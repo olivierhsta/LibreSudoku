@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Domain\Service;
+namespace Tests\Unit\Domain\Service;
 
 use PHPUnit\Framework\TestCase;
 use App\Domain\Value\Grid;

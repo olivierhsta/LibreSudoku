@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Domain;
+namespace Tests\Unit\Infrastructure;
 
 use PHPUnit\Framework\TestCase;
 use App\Domain\Factory\PuzzleFactory;
@@ -9,7 +9,7 @@ use App\Domain\Service\DifficultyService;
 use App\Domain\Factory\GridFactory;
 use App\Domain\Value\Difficulty;
 
-class PuzzleFactoryTest extends TestCase
+class DoctrinePuzzleFactoryTest extends TestCase
 {
     /**
      * @dataProvider puzzleFactoryProvider

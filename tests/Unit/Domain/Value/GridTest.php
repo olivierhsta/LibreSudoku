@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Domain\Value;
+namespace Tests\Unit\Domain\Value;
 
 use App\Domain\Value\Cell;
 use PHPUnit\Framework\TestCase;
