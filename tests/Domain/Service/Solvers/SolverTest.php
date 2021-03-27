@@ -4,12 +4,9 @@ namespace App\Tests\Domain\Service\Solvers;
 
 use App\Domain\Factory\GridFactory;
 use App\Domain\Factory\PuzzleFactory;
-use App\Domain\Factory\SolverFactory;
 use App\Domain\Service\DifficultyService;
 use App\Domain\Service\SolvabilityService;
 use App\Domain\Service\Solvers\Solver;
-use App\Domain\Value\Grid;
-use App\Domain\Value\Strategy;
 use PHPUnit\Framework\TestCase;
 
 class SolverTest extends TestCase

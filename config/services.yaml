@@ -23,7 +23,7 @@ services:
         resource: '../src/Http/Controller'
         tags: ['controller.service_arguments']
 
-    App\Core\Symfony\RequestDtoResolver:
+    App\Infrastructure\Symfony\RequestDtoResolver:
         arguments:
             - '@validator'
         tags:
